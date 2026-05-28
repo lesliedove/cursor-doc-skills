@@ -1,0 +1,28 @@
+{
+  "_comment_user_name": "REQUIRED. The name that appears after '## ' in the Team Charlie standup files for your section (e.g. 'Don', 'Nanda', 'Caroline'). Used to extract your accomplishments from the standup notes.",
+  "user_name": "<YourName>",
+
+  "_comment_meeting_name": "Optional. The text to look for in Monday's calendar subjects (case-insensitive). Defaults to 'How I AI'.",
+  "meeting_name": "How I AI",
+
+  "_comment_meeting_cadence_days": "Optional. How many days between meetings, used as the fallback window when state.json hasn't recorded a previous meeting yet. Defaults to 14 (biweekly).",
+  "meeting_cadence_days": 14,
+
+  "_comment_scratch_dir": "Optional. Override the default scratch folder path. Defaults to 'C:\\GitRepos\\.scratch'.",
+  "scratch_dir": "C:\\GitRepos\\.scratch",
+
+  "_comment_ai_projects_dir": "Optional. Where to keep your personal AI project list. Defaults to '%USERPROFILE%\\Documents\\AI Projects'.",
+  "ai_projects_dir": "%USERPROFILE%\\Documents\\AI Projects",
+
+  "_comment_prep_dir": "Optional. Where prep docs are written. Defaults to '%USERPROFILE%\\Downloads\\How-I-AI'.",
+  "prep_dir": "%USERPROFILE%\\Downloads\\How-I-AI",
+
+  "_comment_standup_dir": "Optional. Where the Team Charlie standup files live. Defaults to the shared OneDrive path under your username. Override if you've synced to a different location.",
+  "standup_dir": "%USERPROFILE%\\OneDrive - Synopsys, Inc\\Collaborative Services - oSL and MC - Team Charlie\\Stand Ups",
+
+  "_comment_agent_transcripts_dir": "Optional. Where Cursor stores agent transcripts for the Team Charlie workspace. The folder name encodes the workspace path; if Cursor opens the Team Charlie OneDrive folder, the default below should work. Otherwise check '%USERPROFILE%\\.cursor\\projects\\' for the right folder.",
+  "agent_transcripts_dir": "%USERPROFILE%\\.cursor\\projects\\c-Users-%USERNAME%-OneDrive-Synopsys-Inc-Collaborative-Services-oSL-and-MC-Team-Charlie\\agent-transcripts",
+
+  "_comment_env_file": "Optional. Path to the .env file containing your Microsoft Graph credentials (CLIENT_ID, TENANT_ID, etc.) for the calendar auto-trigger. Defaults to '%USERPROFILE%\\.env'. Only needed if you wire up the morning briefing hook.",
+  "env_file": "%USERPROFILE%\\.env"
+}

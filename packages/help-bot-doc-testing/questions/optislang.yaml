@@ -1,0 +1,418 @@
+metadata:
+  product: optiSLang
+  generated_from:
+  - web_research
+  total_questions: 25
+  note: ground_truth_topics and expected_key_facts need to be filled in by mapping
+    to llm-docs corpus topics.
+questions:
+- id: osl-installation-001
+  question: How do I install optiSLang standalone?
+  product: optiSLang
+  category: installation
+  source: web_research
+  frequency: 20
+  ground_truth_topics:
+  - optislang/osl-installing-optislang-on-linux-systems.md
+  - optislang/osl-installing-optislang-on-windows-systems.md
+  - optislang/osl-installing-optislang-via-the-gui-installer.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'How do I install optislang on linux systems? (score: 0.533)'
+  - 'How do I install optislang on windows systems? (score: 0.533)'
+  - 'How do I install optislang via the gui installer? (score: 0.533)'
+- id: osl-installation-002
+  question: What are the system requirements for optiSLang?
+  product: optiSLang
+  category: installation
+  source: web_research
+  frequency: 15
+  ground_truth_topics:
+  - optislang/osl-adding-a-system-or-node-to-the-scenery-pane.md
+  - optislang/osl-optislang-new-features.md
+  - optislang/osl-installing-optislang-via-the-gui-installer.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'Adding a System or Node to the Scenery Pane (score: 0.286)'
+  - 'optiSLang New Features (score: 0.271)'
+  - 'How do I install optislang via the gui installer? (score: 0.243)'
+- id: osl-api_scripting-003
+  question: How do I run optiSLang in batch mode?
+  product: optiSLang
+  category: api_scripting
+  source: web_research
+  frequency: 25
+  ground_truth_topics:
+  - optislang/osl-installing-optislang-on-linux-systems.md
+  - optislang/osl-installing-optislang-on-windows-systems.md
+  - optislang/osl-creating-a-new-project-from-the-command-line.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'How do I install optislang on linux systems? (score: 0.35)'
+  - 'How do I install optislang on windows systems? (score: 0.35)'
+  - 'How do I create a new project from the command line? (score: 0.3)'
+- id: osl-api_scripting-004
+  question: How do I pass arguments to optiSLang in batch mode?
+  product: optiSLang
+  category: api_scripting
+  source: web_research
+  frequency: 20
+  ground_truth_topics:
+  - optislang/osl-installing-optislang-on-linux-systems.md
+  - optislang/osl-installing-optislang-on-windows-systems.md
+  - optislang/osl-creating-geometric-imperfections-from-a-free-form-variation.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'How do I install optislang on linux systems? (score: 0.31)'
+  - 'How do I install optislang on windows systems? (score: 0.31)'
+  - 'How do I create geometric imperfections from a free-form variation field in ansys
+    mechanical? (score: 0.25)'
+- id: osl-api_scripting-005
+  question: How do I automate optiSLang using PyOptiSLang?
+  product: optiSLang
+  category: api_scripting
+  source: web_research
+  frequency: 22
+  ground_truth_topics:
+  - optislang/osl-installing-optislang-on-linux-systems.md
+  - optislang/osl-installing-optislang-on-windows-systems.md
+  - optislang/osl-installing-optislang-via-the-gui-installer.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'How do I install optislang on linux systems? (score: 0.357)'
+  - 'How do I install optislang on windows systems? (score: 0.357)'
+  - 'How do I install optislang via the gui installer? (score: 0.314)'
+- id: osl-troubleshooting-006
+  question: 'PyOptiSLang RuntimeError: Cannot get optiSLang server port - how to fix?'
+  product: optiSLang
+  category: troubleshooting
+  source: web_research
+  frequency: 18
+  ground_truth_topics:
+  - optislang/osl-optislang-as-a-server-package.md
+  - optislang/osl-introduction-to-optislang-tutorials.md
+  - optislang/osl-installing-optislang-on-linux-systems.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'optiSLang as a Server Package (score: 0.23)'
+  - 'Introduction to optiSLang Tutorials (score: 0.2)'
+  - 'How do I install optislang on linux systems? (score: 0.17)'
+- id: osl-optimization-007
+  question: How do I set up a sensitivity analysis in optiSLang?
+  product: optiSLang
+  category: optimization
+  source: web_research
+  frequency: 30
+  ground_truth_topics:
+  - optislang/osl-creating-geometric-imperfections-from-a-free-form-variation.md
+  - optislang/osl-sensitivity-analysis.md
+  - optislang/osl-optislang-in-optimetrics.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'How do I create geometric imperfections from a free-form variation field in ansys
+    mechanical? (score: 0.29)'
+  - 'Sensitivity Analysis (score: 0.29)'
+  - 'optiSLang in Optimetrics (score: 0.26)'
+- id: osl-optimization-008
+  question: How do I perform optimization of a damped oscillator in optiSLang?
+  product: optiSLang
+  category: optimization
+  source: web_research
+  frequency: 20
+  ground_truth_topics:
+  - optislang/osl-accompanying-example-optimization-of-a-damped-oscillator.md
+  - optislang/osl-reliability-analysis-of-a-damped-oscillator-in-ansys-workben.md
+  - optislang/osl-reliability-analysis-of-a-damped-oscillator.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'Accompanying example: optimization of a damped oscillator (score: 0.427)'
+  - 'Reliability Analysis of a Damped Oscillator in Ansys Workbench (score: 0.345)'
+  - 'Reliability Analysis of a Damped Oscillator (score: 0.309)'
+- id: osl-optimization-009
+  question: How do I use the Metamodel of Optimal Prognosis (MOP) in optiSLang?
+  product: optiSLang
+  category: optimization
+  source: web_research
+  frequency: 22
+  ground_truth_topics:
+  - optislang/osl-evaluation-of-the-metamodel-of-optimal-prognosis-solver-in-m.md
+  - optislang/osl-evaluation-of-the-metamodel-of-optimal-prognosis-solver-in-p.md
+  - optislang/osl-metamodel-of-optimal-prognosis-from-external-data.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'Evaluation of the Metamodel of Optimal Prognosis Solver in MATLAB (score: 0.475)'
+  - 'Evaluation of the Metamodel of Optimal Prognosis Solver in Python (score: 0.475)'
+  - 'Metamodel of Optimal Prognosis from External Data (score: 0.333)'
+- id: osl-general-010
+  question: What is the Coefficient of Prognosis (CoP) in optiSLang?
+  product: optiSLang
+  category: general
+  source: web_research
+  frequency: 18
+  ground_truth_topics:
+  - optislang/osl-evaluation-of-the-metamodel-of-optimal-prognosis-solver-in-m.md
+  - optislang/osl-evaluation-of-the-metamodel-of-optimal-prognosis-solver-in-p.md
+  - optislang/osl-optislang-in-optimetrics.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'Evaluation of the Metamodel of Optimal Prognosis Solver in MATLAB (score: 0.344)'
+  - 'Evaluation of the Metamodel of Optimal Prognosis Solver in Python (score: 0.344)'
+  - 'optiSLang in Optimetrics (score: 0.289)'
+- id: osl-optimization-011
+  question: How do I use AMOP (Adaptive MOP) in optiSLang?
+  product: optiSLang
+  category: optimization
+  source: web_research
+  frequency: 15
+  ground_truth_topics:
+  - optislang/osl-installing-optislang-on-linux-systems.md
+  - optislang/osl-installing-optislang-on-windows-systems.md
+  - optislang/osl-creating-geometric-imperfections-from-a-free-form-variation.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'How do I install optislang on linux systems? (score: 0.278)'
+  - 'How do I install optislang on windows systems? (score: 0.278)'
+  - 'How do I create geometric imperfections from a free-form variation field in ansys
+    mechanical? (score: 0.244)'
+- id: osl-optimization-012
+  question: How do I set up a Design of Experiments (DOE) in optiSLang?
+  product: optiSLang
+  category: optimization
+  source: web_research
+  frequency: 25
+  ground_truth_topics:
+  - optislang/osl-creating-geometric-imperfections-from-a-free-form-variation.md
+  - optislang/osl-optislang-in-optimetrics.md
+  - optislang/osl-creating-a-new-project-from-the-command-line.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'How do I create geometric imperfections from a free-form variation field in ansys
+    mechanical? (score: 0.267)'
+  - 'optiSLang in Optimetrics (score: 0.267)'
+  - 'How do I create a new project from the command line? (score: 0.233)'
+- id: osl-workflow_integration-013
+  question: How do I integrate optiSLang with Ansys Workbench?
+  product: optiSLang
+  category: workflow_integration
+  source: web_research
+  frequency: 25
+  ground_truth_topics:
+  - optislang/osl-ansys-workbench-integration-tutorials.md
+  - optislang/osl-creating-geometric-imperfections-from-a-free-form-variation.md
+  - optislang/osl-installing-optislang-via-the-gui-installer.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'Ansys Workbench Integration Tutorials (score: 0.325)'
+  - 'How do I create geometric imperfections from a free-form variation field in ansys
+    mechanical? (score: 0.312)'
+  - 'How do I install optislang via the gui installer? (score: 0.312)'
+- id: osl-workflow_integration-014
+  question: How do I connect optiSLang to Ansys Mechanical?
+  product: optiSLang
+  category: workflow_integration
+  source: web_research
+  frequency: 20
+  ground_truth_topics:
+  - optislang/osl-creating-geometric-imperfections-from-a-free-form-variation.md
+  - optislang/osl-installing-optislang-via-the-gui-installer.md
+  - optislang/osl-installing-optislang-on-linux-systems.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'How do I create geometric imperfections from a free-form variation field in ansys
+    mechanical? (score: 0.4)'
+  - 'How do I install optislang via the gui installer? (score: 0.35)'
+  - 'How do I install optislang on linux systems? (score: 0.312)'
+- id: osl-general-015
+  question: How do I use optiSLang with Ansys Fluent?
+  product: optiSLang
+  category: general
+  source: web_research
+  frequency: 18
+  ground_truth_topics:
+  - optislang/osl-creating-geometric-imperfections-from-a-free-form-variation.md
+  - optislang/osl-installing-optislang-via-the-gui-installer.md
+  - optislang/osl-getting-started-with-optislang.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'How do I create geometric imperfections from a free-form variation field in ansys
+    mechanical? (score: 0.312)'
+  - 'How do I install optislang via the gui installer? (score: 0.312)'
+  - 'Getting Started with optiSLang (score: 0.287)'
+- id: osl-general-016
+  question: How do I use optiSLang with MATLAB?
+  product: optiSLang
+  category: general
+  source: web_research
+  frequency: 15
+  ground_truth_topics:
+  - optislang/osl-getting-started-with-optislang.md
+  - optislang/osl-installing-optislang-on-linux-systems.md
+  - optislang/osl-installing-optislang-on-windows-systems.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'Getting Started with optiSLang (score: 0.329)'
+  - 'How do I install optislang on linux systems? (score: 0.314)'
+  - 'How do I install optislang on windows systems? (score: 0.314)'
+- id: osl-general-017
+  question: How do I use optiSLang with Excel?
+  product: optiSLang
+  category: general
+  source: web_research
+  frequency: 15
+  ground_truth_topics:
+  - optislang/osl-getting-started-with-optislang.md
+  - optislang/osl-installing-optislang-on-linux-systems.md
+  - optislang/osl-installing-optislang-on-windows-systems.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'Getting Started with optiSLang (score: 0.329)'
+  - 'How do I install optislang on linux systems? (score: 0.314)'
+  - 'How do I install optislang on windows systems? (score: 0.314)'
+- id: osl-optimization-018
+  question: How do I perform robust design optimization in optiSLang?
+  product: optiSLang
+  category: optimization
+  source: web_research
+  frequency: 15
+  ground_truth_topics:
+  - optislang/osl-robust-design-optimization.md
+  - optislang/osl-results-of-the-robust-design-optimization-1.md
+  - optislang/osl-results-of-the-robust-design-optimization.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'Robust Design Optimization (score: 0.4)'
+  - 'Results of the Robust Design Optimization (score: 0.333)'
+  - 'Results of the Robust Design Optimization (score: 0.333)'
+- id: osl-general-019
+  question: How do I perform reliability analysis in optiSLang?
+  product: optiSLang
+  category: general
+  source: web_research
+  frequency: 12
+  ground_truth_topics:
+  - optislang/osl-reliability-analysis-of-a-damped-oscillator-in-ansys-workben.md
+  - optislang/osl-installing-optislang-on-linux-systems.md
+  - optislang/osl-installing-optislang-on-windows-systems.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'Reliability Analysis of a Damped Oscillator in Ansys Workbench (score: 0.338)'
+  - 'How do I install optislang on linux systems? (score: 0.312)'
+  - 'How do I install optislang on windows systems? (score: 0.312)'
+- id: osl-api_scripting-020
+  question: How do I use Python code objects with optiSLang in Mechanical?
+  product: optiSLang
+  category: api_scripting
+  source: web_research
+  frequency: 18
+  ground_truth_topics:
+  - optislang/osl-creating-geometric-imperfections-from-a-free-form-variation.md
+  - optislang/osl-installing-optislang-on-linux-systems.md
+  - optislang/osl-installing-optislang-on-windows-systems.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'How do I create geometric imperfections from a free-form variation field in ansys
+    mechanical? (score: 0.291)'
+  - 'How do I install optislang on linux systems? (score: 0.227)'
+  - 'How do I install optislang on windows systems? (score: 0.227)'
+- id: osl-troubleshooting-021
+  question: Script works in standalone Mechanical but fails in optiSLang - why?
+  product: optiSLang
+  category: troubleshooting
+  source: web_research
+  frequency: 15
+  ground_truth_topics:
+  - optislang/osl-analyzing-an-ansys-mechanical-project-in-optislang.md
+  - optislang/osl-evaluating-field-mops-in-optislang.md
+  - optislang/osl-optislang-in-optimetrics.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'Analyzing an Ansys Mechanical Project in optiSLang (score: 0.233)'
+  - 'Evaluating Field-MOPs in optiSLang (score: 0.189)'
+  - 'optiSLang in Optimetrics (score: 0.189)'
+- id: osl-licensing-022
+  question: How do I configure optiSLang licensing?
+  product: optiSLang
+  category: licensing
+  source: web_research
+  frequency: 12
+  ground_truth_topics:
+  - optislang/osl-configuring-licensing.md
+  - optislang/osl-installing-and-configuring-licensing.md
+  - optislang/osl-installing-optislang-on-linux-systems.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'How do I configure licensing? (score: 0.483)'
+  - 'How do I install and configuring licensing? (score: 0.417)'
+  - 'How do I install optislang on linux systems? (score: 0.367)'
+- id: osl-general-023
+  question: How do I use signal data analysis in optiSLang?
+  product: optiSLang
+  category: general
+  source: web_research
+  frequency: 10
+  ground_truth_topics:
+  - optislang/osl-installing-optislang-on-linux-systems.md
+  - optislang/osl-installing-optislang-on-windows-systems.md
+  - optislang/osl-creating-geometric-imperfections-from-a-free-form-variation.md
+  expected_key_facts: []
+  priority: medium
+  _suggested_titles:
+  - 'How do I install optislang on linux systems? (score: 0.278)'
+  - 'How do I install optislang on windows systems? (score: 0.278)'
+  - 'How do I create geometric imperfections from a free-form variation field in ansys
+    mechanical? (score: 0.244)'
+- id: osl-general-024
+  question: How do I create a parametric study in optiSLang?
+  product: optiSLang
+  category: general
+  source: web_research
+  frequency: 20
+  ground_truth_topics:
+  - optislang/osl-creating-geometric-imperfections-from-a-free-form-variation.md
+  - optislang/osl-creating-a-new-project-from-the-command-line.md
+  - optislang/osl-creating-a-guided-project.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'How do I create geometric imperfections from a free-form variation field in ansys
+    mechanical? (score: 0.4)'
+  - 'How do I create a new project from the command line? (score: 0.356)'
+  - 'How do I create a guided project? (score: 0.289)'
+- id: osl-general-025
+  question: How do I use the optiSLang post-processing features?
+  product: optiSLang
+  category: general
+  source: web_research
+  frequency: 15
+  ground_truth_topics:
+  - optislang/osl-installing-optislang-via-the-gui-installer.md
+  - optislang/osl-installing-optislang-on-linux-systems.md
+  - optislang/osl-installing-optislang-on-windows-systems.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'How do I install optislang via the gui installer? (score: 0.322)'
+  - 'How do I install optislang on linux systems? (score: 0.278)'
+  - 'How do I install optislang on windows systems? (score: 0.278)'

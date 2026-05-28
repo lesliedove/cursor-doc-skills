@@ -1,0 +1,68 @@
+{
+  "_comment_meeting_name": "REQUIRED. The text to look for on your calendar (case-insensitive) and the human-readable name shown in the prep doc. Examples: 'Sprint Review', 'Director 1:1', 'Team Standup', 'How I AI'.",
+  "meeting_name": "<Meeting Name>",
+
+  "_comment_user_name": "Optional but recommended. The name that appears after '## ' in your team's standup files for your section (e.g. 'Don', 'Caroline'). If empty, the standup-bullet scan is skipped.",
+  "user_name": "<YourName>",
+
+  "_comment_meeting_cadence_days": "Optional. How many days between meetings, used as the fallback window when state.json hasn't recorded a previous meeting yet. Defaults to 14.",
+  "meeting_cadence_days": 14,
+
+  "_comment_lookahead_days": "Optional. How many days ahead to look on the calendar when wired up to a morning briefing. Defaults to 3 (i.e. trigger up to 3 days before the meeting).",
+  "lookahead_days": 3,
+
+  "_comment_filter_keywords": "Optional. If non-empty, the standup-bullet and scratch-folder scans only include items matching at least one keyword (case-insensitive substring). Leave empty to capture all activity (the default for sprint reviews and status meetings). For a narrow-topic meeting (AI-only round, security review, etc.), supply matching keywords here.",
+  "filter_keywords": [],
+
+  "_comment_skills_dir": "Optional. Where Cursor stores your skills. Defaults to '%USERPROFILE%\\.cursor\\skills'.",
+  "skills_dir": "%USERPROFILE%\\.cursor\\skills",
+
+  "_comment_scratch_dir": "Optional. Your working / scratch folder where AI-driven or exploratory work lives. Defaults to 'C:\\GitRepos\\.scratch'. Set to null/remove if you don't have one.",
+  "scratch_dir": "C:\\GitRepos\\.scratch",
+
+  "_comment_standup_dir": "Optional. Where your team's standup notes live. Set this if your team keeps a shared standup file with a '## <name>' section per person. No sensible default — leave unset to skip the standup scan.",
+  "standup_dir": "",
+
+  "_comment_git_repos": "Optional. Array of repo paths to scan for your commits. Empty = skip git scan. Example: ['C:\\\\GitRepos\\\\repo-a', 'C:\\\\GitRepos\\\\repo-b'].",
+  "git_repos": [],
+
+  "_comment_git_author": "Optional. The git author name to filter on. Defaults to user_name. Set explicitly if your standup name and your `git config user.name` differ.",
+  "git_author": "",
+
+  "_comment_ticket_pattern": "Optional. Regex used to extract ticket IDs from commit messages and folder names. Defaults to a 6-to-8-digit number. Override for Jira-style or other formats (e.g. '[A-Z]+-\\\\d+' for 'PROJ-1234').",
+  "ticket_pattern": "\\b\\d{6,8}\\b",
+
+  "_comment_master_list_path": "Optional. Path to a personal markdown file where you keep a running list of projects (one ## heading per project). When set, the skill cross-references discoveries against this list and offers to add new entries or update statuses. Leave empty to skip.",
+  "master_list_path": "",
+
+  "_comment_prep_dir": "Optional. Root folder where prep docs are written. The skill creates a subfolder named after the meeting slug. Defaults to '%USERPROFILE%\\Downloads\\Meeting-Prep'.",
+  "prep_dir": "%USERPROFILE%\\Downloads\\Meeting-Prep",
+
+  "_comment_state_dir": "Optional. Where state files are stored. Defaults to '%USERPROFILE%\\.config\\since-last-meeting'. Each meeting gets its own '<slug>.json' inside this folder.",
+  "state_dir": "%USERPROFILE%\\.config\\since-last-meeting",
+
+  "_comment_agent_transcripts_dir": "Optional. Where Cursor stores agent transcripts for the workspace you most often work in. Cursor folder names encode the workspace path. To find yours, browse '%USERPROFILE%\\.cursor\\projects\\' and pick the right subfolder. Leave empty to skip the transcript scan.",
+  "agent_transcripts_dir": "",
+
+  "_comment_env_file": "Optional. Path to a .env file with credentials used by an upstream morning-briefing skill (Microsoft Graph token, etc.). This skill itself doesn't read the calendar — that's the briefing's job. Defaults to '%USERPROFILE%\\.env'.",
+  "env_file": "%USERPROFILE%\\.env",
+
+  "_comment_meetings": "Optional ADVANCED mode. If you want one install to drive multiple meetings, replace the top-level config with a 'meetings' array. Each entry can override any key above; top-level keys serve as defaults. Example below — uncomment if needed.",
+  "_example_meetings": [
+    {
+      "meeting_name": "Sprint Review",
+      "meeting_cadence_days": 14,
+      "filter_keywords": []
+    },
+    {
+      "meeting_name": "Director 1:1",
+      "meeting_cadence_days": 7,
+      "filter_keywords": ["promotion", "career", "concern", "blocker"]
+    },
+    {
+      "meeting_name": "How I AI",
+      "meeting_cadence_days": 14,
+      "filter_keywords": ["AI", "Cursor", "Claude", "agent", "skill", "automation", "created", "built", "prototype"]
+    }
+  ]
+}

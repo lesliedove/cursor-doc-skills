@@ -1,0 +1,422 @@
+metadata:
+  product: ModelCenter
+  generated_from:
+  - web_research
+  total_questions: 25
+  note: ground_truth_topics and expected_key_facts need to be filled in by mapping
+    to llm-docs corpus topics.
+questions:
+- id: mc-installation-001
+  question: How do I install ModelCenter Desktop?
+  product: ModelCenter
+  category: installation
+  source: web_research
+  frequency: 25
+  ground_truth_topics:
+  - modelcenter/mc-how-to-install-the-thermal-desktop-plug-in-beta.md
+  - modelcenter/mc-how-to-test-a-filewrapper-through-modelcenter-desktop.md
+  - modelcenter/mc-how-to-use-ssh-connections-with-modelcenter-desktop.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'How do I install the thermal desktop plug-in (beta)? (score: 0.483)'
+  - 'How do I test a filewrapper through modelcenter desktop? (score: 0.483)'
+  - 'How do I use ssh connections with modelcenter desktop? (score: 0.483)'
+- id: mc-installation-002
+  question: What are the system requirements for ModelCenter?
+  product: ModelCenter
+  category: installation
+  source: web_research
+  frequency: 20
+  ground_truth_topics:
+  - modelcenter/mc-what-are-requirements-in-an-execution-plan.md
+  - modelcenter/mc-what-is-the-modelcenter-mbse-plug-in.md
+  - modelcenter/mc-how-to-use-a-custom-sysml-profile-with-modelcenter-mbse-1.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'What are Requirements in an Execution Plan? (score: 0.386)'
+  - 'What is the ModelCenter MBSE Plug-In? (score: 0.343)'
+  - 'How do I use a custom sysml profile with modelcenter mbse? (score: 0.314)'
+- id: mc-installation-003
+  question: How do I install ModelCenter Remote Execution (MCRE)?
+  product: ModelCenter
+  category: installation
+  source: web_research
+  frequency: 15
+  ground_truth_topics:
+  - modelcenter/mc-how-to-launch-modelcenter-remote-execution.md
+  - modelcenter/mc-how-to-launch-modelcenter-remote-execution-in-linux.md
+  - modelcenter/mc-how-to-set-modelcenter-remote-execution-for-ssl-connections.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'How do I launch modelcenter remote execution? (score: 0.6)'
+  - 'How do I launch modelcenter remote execution in linux? (score: 0.562)'
+  - 'How do I set modelcenter remote execution for ssl connections? (score: 0.562)'
+- id: mc-licensing-004
+  question: How do I configure ModelCenter to use a license server?
+  product: ModelCenter
+  category: licensing
+  source: web_research
+  frequency: 18
+  ground_truth_topics:
+  - modelcenter/mc-how-to-configure-modelcenter-remote-execution-to-use-user-sp.md
+  - modelcenter/mc-how-to-use-a-custom-sysml-profile-with-modelcenter-mbse-1.md
+  - modelcenter/mc-how-to-use-a-custom-sysml-profile-with-modelcenter-mbse.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'How do I configure modelcenter remote execution to use user-specified python?
+    (score: 0.43)'
+  - 'How do I use a custom sysml profile with modelcenter mbse? (score: 0.39)'
+  - 'How do I use a custom sysml profile with modelcenter mbse? (score: 0.39)'
+- id: mc-workflow_integration-005
+  question: How do I create a workflow in ModelCenter?
+  product: ModelCenter
+  category: workflow_integration
+  source: web_research
+  frequency: 30
+  ground_truth_topics:
+  - modelcenter/mc-how-to-add-a-model-to-the-modelcenter-workflow.md
+  - modelcenter/mc-how-to-create-an-executable-workflow-from-a-block-1.md
+  - modelcenter/mc-how-to-launch-modelcenter-remote-execution-as-a-service-in-w.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'How do I add a model to the modelcenter workflow? (score: 0.488)'
+  - 'How do I create an executable workflow from a block? (score: 0.45)'
+  - 'How do I launch modelcenter remote execution as a service in windows 10? (score:
+    0.45)'
+- id: mc-workflow_integration-006
+  question: How do I wrap an Excel spreadsheet as a ModelCenter component?
+  product: ModelCenter
+  category: workflow_integration
+  source: web_research
+  frequency: 22
+  ground_truth_topics:
+  - modelcenter/mc-how-to-wrap-a-post-processing-or-visualization-tool.md
+  - modelcenter/mc-how-to-launch-modelcenter-remote-execution-as-a-service-in-w.md
+  - modelcenter/mc-how-to-wrap-an-excel-workbook-legacy.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'How do I wrap a post-processing or visualization tool? (score: 0.345)'
+  - 'How do I launch modelcenter remote execution as a service in windows 10? (score:
+    0.327)'
+  - 'How do I wrap an excel workbook (legacy)? (score: 0.327)'
+- id: mc-workflow_integration-007
+  question: How do I connect ModelCenter to MATLAB?
+  product: ModelCenter
+  category: workflow_integration
+  source: web_research
+  frequency: 20
+  ground_truth_topics:
+  - modelcenter/mc-how-to-configure-modelcenter-remote-execution-to-use-user-sp.md
+  - modelcenter/mc-how-to-launch-modelcenter-remote-execution.md
+  - modelcenter/mc-how-to-use-a-modelcenter-remote-execution-analysis.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'How do I configure modelcenter remote execution to use user-specified python?
+    (score: 0.414)'
+  - 'How do I launch modelcenter remote execution? (score: 0.4)'
+  - 'How do I use a modelcenter remote execution analysis? (score: 0.4)'
+- id: mc-workflow_integration-008
+  question: How do I integrate ModelCenter with Ansys Workbench?
+  product: ModelCenter
+  category: workflow_integration
+  source: web_research
+  frequency: 18
+  ground_truth_topics:
+  - modelcenter/mc-how-to-add-modelcenter-mbse-to-an-ansys-sam-model.md
+  - modelcenter/mc-how-to-set-up-licensing-with-other-ansys-products.md
+  - modelcenter/mc-how-to-use-a-custom-sysml-profile-with-modelcenter-mbse-1.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'How do I add modelcenter mbse to an ansys sam model? (score: 0.362)'
+  - 'How do I set up licensing with other ansys products? (score: 0.362)'
+  - 'How do I use a custom sysml profile with modelcenter mbse? (score: 0.325)'
+- id: mc-api_scripting-009
+  question: How do I use ModelCenter with Python scripting?
+  product: ModelCenter
+  category: api_scripting
+  source: web_research
+  frequency: 25
+  ground_truth_topics:
+  - modelcenter/mc-how-to-configure-modelcenter-remote-execution-to-use-user-sp.md
+  - modelcenter/mc-how-to-use-a-custom-sysml-profile-with-modelcenter-mbse-1.md
+  - modelcenter/mc-how-to-use-a-custom-sysml-profile-with-modelcenter-mbse.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'How do I configure modelcenter remote execution to use user-specified python?
+    (score: 0.488)'
+  - 'How do I use a custom sysml profile with modelcenter mbse? (score: 0.413)'
+  - 'How do I use a custom sysml profile with modelcenter mbse? (score: 0.413)'
+- id: mc-api_scripting-010
+  question: How do I run a ModelCenter workflow from the command line?
+  product: ModelCenter
+  category: api_scripting
+  source: web_research
+  frequency: 15
+  ground_truth_topics:
+  - modelcenter/mc-how-to-add-a-model-to-the-modelcenter-workflow.md
+  - modelcenter/mc-how-to-wrap-command-line-interfaces.md
+  - modelcenter/mc-how-to-run-the-driver-component-in-a-process-workflow.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'How do I add a model to the modelcenter workflow? (score: 0.418)'
+  - 'How do I wrap command line interfaces? (score: 0.4)'
+  - 'How do I run the driver component in a process workflow? (score: 0.364)'
+- id: mc-api_scripting-011
+  question: How do I use the ModelCenter API to create components programmatically?
+  product: ModelCenter
+  category: api_scripting
+  source: web_research
+  frequency: 12
+  ground_truth_topics:
+  - modelcenter/mc-how-to-configure-modelcenter-remote-execution-to-use-user-sp.md
+  - modelcenter/mc-how-to-create-custom-driver-components.md
+  - modelcenter/mc-how-to-use-the-modelcenter-plug-in-for-catia-legacy.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'How do I configure modelcenter remote execution to use user-specified python?
+    (score: 0.355)'
+  - 'How do I create custom driver components? (score: 0.345)'
+  - 'How do I use the modelcenter plug-in for catia (legacy)? (score: 0.327)'
+- id: mc-mbse-012
+  question: How do I set up ModelCenter MBSE with Ansys SAM?
+  product: ModelCenter
+  category: mbse
+  source: web_research
+  frequency: 15
+  ground_truth_topics:
+  - modelcenter/mc-how-to-add-modelcenter-mbse-to-an-ansys-sam-model.md
+  - modelcenter/mc-how-to-set-up-licensing-with-other-ansys-products.md
+  - modelcenter/mc-how-to-use-a-custom-sysml-profile-with-modelcenter-mbse-1.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'How do I add modelcenter mbse to an ansys sam model? (score: 0.46)'
+  - 'How do I set up licensing with other ansys products? (score: 0.4)'
+  - 'How do I use a custom sysml profile with modelcenter mbse? (score: 0.36)'
+- id: mc-optimization-013
+  question: What is ModelCenter MBSE and how does it connect to systems models?
+  product: ModelCenter
+  category: optimization
+  source: web_research
+  frequency: 12
+  ground_truth_topics:
+  - modelcenter/mc-how-to-use-cardinality-and-arrays-with-modelcenter-mbse.md
+  - modelcenter/mc-how-to-use-multiplicity-and-arrays-with-modelcenter-mbse.md
+  - modelcenter/mc-what-is-the-modelcenter-mbse-plug-in.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'How do I use cardinality and arrays with modelcenter mbse? (score: 0.283)'
+  - 'How do I use multiplicity and arrays with modelcenter mbse? (score: 0.283)'
+  - 'What is the ModelCenter MBSE Plug-In? (score: 0.283)'
+- id: mc-general-014
+  question: How do I use ModelCenter with Cameo Systems Modeler?
+  product: ModelCenter
+  category: general
+  source: web_research
+  frequency: 10
+  ground_truth_topics:
+  - modelcenter/mc-how-to-use-a-custom-sysml-profile-with-modelcenter-mbse-1.md
+  - modelcenter/mc-how-to-use-a-custom-sysml-profile-with-modelcenter-mbse.md
+  - modelcenter/mc-how-to-use-cardinality-and-arrays-with-modelcenter-mbse.md
+  expected_key_facts: []
+  priority: medium
+  _suggested_titles:
+  - 'How do I use a custom sysml profile with modelcenter mbse? (score: 0.367)'
+  - 'How do I use a custom sysml profile with modelcenter mbse? (score: 0.367)'
+  - 'How do I use cardinality and arrays with modelcenter mbse? (score: 0.367)'
+- id: mc-general-015
+  question: How do I perform a trade study in ModelCenter?
+  product: ModelCenter
+  category: general
+  source: web_research
+  frequency: 20
+  ground_truth_topics:
+  - modelcenter/mc-how-to-open-a-trade-study-in-an-execution-plan.md
+  - modelcenter/mc-how-to-create-a-trade-study-favorite.md
+  - modelcenter/mc-how-to-open-a-recent-trade-study.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'How do I open a trade study in an execution plan? (score: 0.444)'
+  - 'How do I create a trade study favorite? (score: 0.433)'
+  - 'How do I open a recent trade study? (score: 0.433)'
+- id: mc-general-016
+  question: How do I use the Data Explorer in ModelCenter?
+  product: ModelCenter
+  category: general
+  source: web_research
+  frequency: 15
+  ground_truth_topics:
+  - modelcenter/mc-how-to-use-the-data-explorer-and-plots-example.md
+  - modelcenter/mc-how-to-use-the-modelcenter-plug-in-for-catia-legacy.md
+  - modelcenter/mc-how-to-use-the-modelcenter-plug-in-for-catia.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'How do I use the data explorer and plots example? (score: 0.544)'
+  - 'How do I use the modelcenter plug-in for catia (legacy)? (score: 0.478)'
+  - 'How do I use the modelcenter plug-in for catia? (score: 0.478)'
+- id: mc-optimization-017
+  question: How do I use Design of Experiments (DOE) in ModelCenter?
+  product: ModelCenter
+  category: optimization
+  source: web_research
+  frequency: 18
+  ground_truth_topics:
+  - modelcenter/mc-performing-a-design-of-experiments-doe.md
+  - modelcenter/mc-how-to-use-the-modelcenter-plug-in-for-catia-legacy.md
+  - modelcenter/mc-how-to-use-the-modelcenter-plug-in-for-catia.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'Performing a Design of Experiments (DOE) (score: 0.37)'
+  - 'How do I use the modelcenter plug-in for catia (legacy)? (score: 0.36)'
+  - 'How do I use the modelcenter plug-in for catia? (score: 0.36)'
+- id: mc-configuration-018
+  question: How do I configure remote execution in ModelCenter?
+  product: ModelCenter
+  category: configuration
+  source: web_research
+  frequency: 15
+  ground_truth_topics:
+  - modelcenter/mc-how-to-configure-modelcenter-remote-execution-to-use-user-sp.md
+  - modelcenter/mc-how-to-launch-modelcenter-remote-execution-as-a-service-in-w.md
+  - modelcenter/mc-how-to-launch-modelcenter-remote-execution-in-linux.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'How do I configure modelcenter remote execution to use user-specified python?
+    (score: 0.613)'
+  - 'How do I launch modelcenter remote execution as a service in windows 10? (score:
+    0.613)'
+  - 'How do I launch modelcenter remote execution in linux? (score: 0.613)'
+- id: mc-general-019
+  question: How do I set up distributed computing with ModelCenter?
+  product: ModelCenter
+  category: general
+  source: web_research
+  frequency: 12
+  ground_truth_topics:
+  - modelcenter/mc-how-to-set-up-mcre-for-ssh-connections.md
+  - modelcenter/mc-how-to-set-up-licensing-with-other-ansys-products.md
+  - modelcenter/mc-how-to-set-up-secure-connections-with-ssl-through-the-web-ad.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'How do I set up mcre for ssh connections? (score: 0.356)'
+  - 'How do I set up licensing with other ansys products? (score: 0.333)'
+  - 'How do I set up secure connections with ssl through the web administrator? (score:
+    0.333)'
+- id: mc-troubleshooting-020
+  question: How do I debug a failing component in a ModelCenter workflow?
+  product: ModelCenter
+  category: troubleshooting
+  source: web_research
+  frequency: 15
+  ground_truth_topics:
+  - modelcenter/mc-how-to-run-the-driver-component-in-a-process-workflow.md
+  - modelcenter/mc-how-to-add-a-model-to-the-modelcenter-workflow.md
+  - modelcenter/mc-how-to-back-solve-for-a-value-in-a-workflow-using-a-driver-c.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'How do I run the driver component in a process workflow? (score: 0.4)'
+  - 'How do I add a model to the modelcenter workflow? (score: 0.39)'
+  - 'How do I back solve for a value in a workflow using a driver component? (score:
+    0.37)'
+- id: mc-troubleshooting-021
+  question: ModelCenter workflow fails with connection error - how to fix?
+  product: ModelCenter
+  category: troubleshooting
+  source: web_research
+  frequency: 12
+  ground_truth_topics:
+  - modelcenter/mc-how-to-add-a-model-to-the-modelcenter-workflow.md
+  - modelcenter/mc-how-to-save-baseline-values-from-the-modelcenter-workflow-to.md
+  - modelcenter/mc-add-modelcenter-remote-execution-components-to-a-workflow.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'How do I add a model to the modelcenter workflow? (score: 0.278)'
+  - 'How do I save baseline values from the modelcenter workflow to the model? (score:
+    0.244)'
+  - 'Add ModelCenter Remote Execution Components to a Workflow (score: 0.233)'
+- id: mc-workflow_integration-022
+  question: How do I migrate workflows from an older version of ModelCenter?
+  product: ModelCenter
+  category: workflow_integration
+  source: web_research
+  frequency: 10
+  ground_truth_topics:
+  - modelcenter/mc-how-to-create-an-ssh-connection-from-modelcenter.md
+  - modelcenter/mc-how-to-save-values-from-modelcenter-mbse-plug-in-to-an-execu.md
+  - modelcenter/mc-how-to-access-modelcenter-mbse-from-the-modelcenter-mbse-plu.md
+  expected_key_facts: []
+  priority: medium
+  _suggested_titles:
+  - 'How do I create an ssh connection from modelcenter? (score: 0.3)'
+  - 'How do I save values from modelcenter mbse plug-in to an execution plan? (score:
+    0.273)'
+  - 'How do I access modelcenter mbse from the modelcenter mbse plug-in? (score: 0.264)'
+- id: mc-workflow_integration-023
+  question: How do I wrap a custom executable as a ModelCenter component?
+  product: ModelCenter
+  category: workflow_integration
+  source: web_research
+  frequency: 18
+  ground_truth_topics:
+  - modelcenter/mc-how-to-use-a-script-component-legacy-as-a-custom-driver-comp.md
+  - modelcenter/mc-how-to-use-a-custom-sysml-profile-with-modelcenter-mbse-1.md
+  - modelcenter/mc-how-to-use-a-custom-sysml-profile-with-modelcenter-mbse.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'How do I use a script component (legacy) as a custom driver component? (score:
+    0.4)'
+  - 'How do I use a custom sysml profile with modelcenter mbse? (score: 0.39)'
+  - 'How do I use a custom sysml profile with modelcenter mbse? (score: 0.39)'
+- id: mc-workflow_integration-024
+  question: How do I link variables between components in ModelCenter?
+  product: ModelCenter
+  category: workflow_integration
+  source: web_research
+  frequency: 20
+  ground_truth_topics:
+  - modelcenter/mc-how-to-access-modelcenter-mbse-from-the-modelcenter-mbse-plu.md
+  - modelcenter/mc-how-to-launch-modelcenter-remote-execution-as-a-service-in-w.md
+  - modelcenter/mc-how-to-launch-modelcenter-remote-execution-in-linux.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'How do I access modelcenter mbse from the modelcenter mbse plug-in? (score: 0.322)'
+  - 'How do I launch modelcenter remote execution as a service in windows 10? (score:
+    0.322)'
+  - 'How do I launch modelcenter remote execution in linux? (score: 0.322)'
+- id: mc-general-025
+  question: How do I use ModelCenter plugins for third-party tools?
+  product: ModelCenter
+  category: general
+  source: web_research
+  frequency: 12
+  ground_truth_topics:
+  - modelcenter/mc-how-to-use-the-modelcenter-plug-in-for-catia-legacy.md
+  - modelcenter/mc-how-to-use-the-modelcenter-plug-in-for-catia.md
+  - modelcenter/mc-how-to-use-the-modelcenter-plug-in-for-creo-legacy.md
+  expected_key_facts: []
+  priority: high
+  _suggested_titles:
+  - 'How do I use the modelcenter plug-in for catia (legacy)? (score: 0.36)'
+  - 'How do I use the modelcenter plug-in for catia? (score: 0.36)'
+  - 'How do I use the modelcenter plug-in for creo (legacy)? (score: 0.36)'
