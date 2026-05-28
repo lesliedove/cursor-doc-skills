@@ -69,3 +69,11 @@ Remove-Item -Path "$env:USERPROFILE\.cursor\skills\ansys-doc-guidelines" -Recurs
 ```bash
 rm -rf ~/.cursor/skills/ansys-doc-guidelines
 ```
+
+---
+
+## Credits
+
+Built by **Leslie Poff** (`ldove@synopsys.com`), Staff Engineer, ModelCenter and optiSLang Collaborative Services Team.
+
+Part of the **[`cursor-doc-skills`](https://github.com/lesliedove/cursor-doc-skills)** catalog. Issues, suggestions, or terminology updates — open an issue on the repo or ping Leslie on Teams.

@@ -158,4 +158,6 @@ Delete `%USERPROFILE%\.config\how-i-ai\state.json` and re-run. The skill will re
 
 ## Credits
 
-Originally built by Leslie Poff for Team Charlie. This shared edition extracts the personal/Flo-specific bits so any teammate can drop it in and go. Issues or improvements — ping Leslie.
+Built by **Leslie Poff** (`ldove@synopsys.com`), Staff Engineer, ModelCenter and optiSLang Collaborative Services Team. This shared edition extracts the personal/Flo-specific bits so any teammate can drop it in and go.
+
+Part of the **[`cursor-doc-skills`](https://github.com/lesliedove/cursor-doc-skills)** catalog. Issues or improvements — open an issue on the repo or ping Leslie on Teams.

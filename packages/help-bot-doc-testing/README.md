@@ -106,3 +106,11 @@ Initial 50-question pilot (25 ModelCenter + 25 optiSLang) tested manually:
 - Primary failure mode: GUI procedure content invisible to crawlers
 
 See `results/manual_run_2026-05-14.md` for detailed findings.
+
+---
+
+## Credits
+
+Built by **Leslie Poff** (`ldove@synopsys.com`), Staff Engineer, ModelCenter and optiSLang Collaborative Services Team.
+
+Part of the **[`cursor-doc-skills`](https://github.com/lesliedove/cursor-doc-skills)** catalog. Issues, new question banks for other products, or evaluation-engine additions — open an issue on the repo or ping Leslie on Teams.

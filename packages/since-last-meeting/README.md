@@ -205,6 +205,6 @@ The slug derivation lowercases, replaces non-alphanumerics with `-`, and trims. 
 
 ## Credits
 
-Built by Leslie Poff (Synopsys, Collaborative Services / Team Charlie). Generalized from an earlier "How I AI"-specific version so any teammate or any meeting can use the same prep workflow.
+Built by **Leslie Poff** (`ldove@synopsys.com`), Staff Engineer, ModelCenter and optiSLang Collaborative Services Team. Generalized from an earlier "How I AI"-specific version so any teammate or any meeting can use the same prep workflow.
 
-Issues, ideas, or improvements — ping Leslie on Teams or email.
+Part of the **[`cursor-doc-skills`](https://github.com/lesliedove/cursor-doc-skills)** catalog. Issues, ideas, or improvements — open an issue on the repo or ping Leslie on Teams.

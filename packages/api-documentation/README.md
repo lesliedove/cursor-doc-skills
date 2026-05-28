@@ -61,3 +61,11 @@ To update the skill, replace the files in your `~/.cursor/skills/api-documentati
 ## Uninstall
 
 Delete the `api-documentation` folder from `~/.cursor/skills/`.
+
+---
+
+## Credits
+
+Built by **Leslie Poff** (`ldove@synopsys.com`), Staff Engineer, ModelCenter and optiSLang Collaborative Services Team.
+
+Part of the **[`cursor-doc-skills`](https://github.com/lesliedove/cursor-doc-skills)** catalog. Issues, suggestions, or migration-workflow updates — open an issue on the repo or ping Leslie on Teams.
