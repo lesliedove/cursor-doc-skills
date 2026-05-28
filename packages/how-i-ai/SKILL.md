@@ -8,11 +8,11 @@ description: >-
   Monday's calendar, or manually via /how-i-ai.
 ---
 
-# How I AI — Meeting Prep Skill (Team Charlie shared edition)
+# How I AI — Meeting Prep Skill (Shared Edition)
 
 Automatically prepares materials for the biweekly "How I AI" meeting. Detects the meeting on Friday (via a Monday calendar peek), scans for new AI work, updates your personal project list, and creates a lightweight prep doc to glance at on Monday morning.
 
-This is the shared Team Charlie edition. Read the bundled `README.md` once to set up your config, then use the skill the same way every meeting cycle.
+This is the shared edition. Read the bundled `README.md` once to set up your config, then use the skill the same way every meeting cycle.
 
 ## Setup (first run only)
 
@@ -26,17 +26,17 @@ The minimum required configuration is a `config.json` file alongside this `SKILL
 }
 ```
 
-Everything else has sensible Team Charlie defaults and can be overridden in `config.json` as needed.
+Everything else has sensible defaults and can be overridden in `config.json` as needed.
 
 ## Paths (resolved at runtime)
 
-The skill resolves these paths every run. All `%USERPROFILE%` references expand to the current user's home directory, so the same paths work for every Team Charlie member without editing.
+The skill resolves these paths every run. All `%USERPROFILE%` references expand to the current user's home directory, so the same paths work for any user without editing.
 
 | Item | Default path | Override key in `config.json` |
 |------|--------------|-------------------------------|
 | **Skills directory** | `%USERPROFILE%\.cursor\skills\` | `skills_dir` |
-| **Agent transcripts** | `%USERPROFILE%\.cursor\projects\c-Users-<user>-OneDrive-Synopsys-Inc-Collaborative-Services-oSL-and-MC-Team-Charlie\agent-transcripts\` | `agent_transcripts_dir` |
-| **Standup files** | `%USERPROFILE%\OneDrive - Synopsys, Inc\Collaborative Services - oSL and MC - Team Charlie\Stand Ups\<year>\` | `standup_dir` |
+| **Agent transcripts** | `%USERPROFILE%\.cursor\projects\<your-workspace-folder>\agent-transcripts\` — must be set per user | `agent_transcripts_dir` |
+| **Standup files** | `%USERPROFILE%\Documents\Standups\<year>\` — must be set per user | `standup_dir` |
 | **Scratch folder** | `C:\GitRepos\.scratch\` | `scratch_dir` |
 | **AI projects folder** | `%USERPROFILE%\Documents\AI Projects\` | `ai_projects_dir` |
 | **Master project list** | `<ai_projects_dir>\List of AI projects.md` | `master_list_path` |
@@ -44,7 +44,7 @@ The skill resolves these paths every run. All `%USERPROFILE%` references expand 
 | **State file** | `%USERPROFILE%\.config\how-i-ai\state.json` | `state_dir` |
 | **Graph token env file** | `%USERPROFILE%\.env` | `env_file` |
 
-The agent transcripts folder uses the standard Cursor naming convention for the Team Charlie workspace. If you've opened the shared OneDrive folder in Cursor and your transcripts live in a different subfolder, set `agent_transcripts_dir` in `config.json`.
+The agent transcripts folder uses the standard Cursor naming convention. Cursor encodes the absolute path of your workspace into the folder name under `%USERPROFILE%\.cursor\projects\`. Open that folder, find the entry that matches your workspace, and set `agent_transcripts_dir` in `config.json` accordingly.
 
 ## State File
 

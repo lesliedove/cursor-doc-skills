@@ -25,10 +25,10 @@ You have access to a full suite of documentation skills. When the user asks for 
 
 When the user says "good morning", "what's on my plate", "brief me", "morning", or similar first-of-day greetings:
 
-1. **In the Team Charlie workspace:**
+1. **In a workspace that has `/standup` set up:**
    - If today's standup hasn't been written, run `/standup` immediately. **Never ask "should I?"** — the morning greeting IS the consent.
    - If today's standup is already written, run `/recap` instead.
-   - **Critical:** `/standup` is a multi-section command file (currently ~10 sections including calendar, reminders, corp-install monitor, doc work dashboard, Cursor spend, and **web dashboard launch**). You MUST re-read `.cursor/commands/create-stand-up-notes.md` at the start of every invocation. Do not abbreviate, do not work from memory. The morning routine listed below is a fallback for non-Team-Charlie workspaces, not a summary of /standup.
+   - **Critical:** `/standup` is a multi-section command file (currently ~10 sections including calendar, reminders, corp-install monitor, doc work dashboard, Cursor spend, and **web dashboard launch**). You MUST re-read `.cursor/commands/create-stand-up-notes.md` at the start of every invocation. Do not abbreviate, do not work from memory. The morning routine listed below is a fallback for workspaces without `/standup`, not a summary of `/standup`.
 2. **In any other workspace (no /standup):**
    1. Calendar — delegate to `%USERPROFILE%\.cursor\skills\calendar\SKILL.md`.
    2. Reminders — check `.cursor/reminders.md` in the current workspace.

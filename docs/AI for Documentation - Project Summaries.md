@@ -1,6 +1,6 @@
 # AI for Documentation -- Project Summaries
 
-*Leslie Poff, Collaborative Services (Team Charlie)*
+*Leslie Poff, Staff Engineer, ModelCenter and optiSLang Collaborative Services Team*
 *Last updated: May 15, 2026*
 
 These are AI-driven documentation projects developed using Cursor IDE with Claude. Each project was built to solve a real pain point in our day-to-day documentation workflow. Most produce reusable Cursor "skills" (instruction files that teach the AI how to do a specific task) and "rules" (persistent guidelines the AI follows when editing files).
@@ -215,7 +215,7 @@ The skill demonstrates how to integrate AI into an enterprise documentation work
 - **Cherry-pick automation:** Eliminates the most tedious part of multi-release maintenance
 - **Style-guide integration:** Automatically applies the style guide skills when editing
 
-The skill is specific to Team Charlie's repos, but the architecture is reusable.
+The skill is specific to one team's repos, but the architecture is reusable.
 
 ---
 

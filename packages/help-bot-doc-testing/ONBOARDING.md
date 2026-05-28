@@ -218,5 +218,5 @@ bot-doc-testing/
 
 ## Contact
 
-Questions about this toolkit: Leslie Poff (Team Charlie, Documentation)
+Questions about this toolkit: Leslie Poff, Staff Engineer, ModelCenter and optiSLang Collaborative Services Team
 ADO work item: [#1457082](https://tfs.ansys.com:8443/tfs/ANSYS_Development/Portfolio/_workitems/edit/1457082)

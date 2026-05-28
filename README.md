@@ -77,7 +77,7 @@ Each package's `README.md` and `SKILL.md` list the exact triggers.
 
 ## Adapting a skill for your team
 
-These skills are **starting points**, not finished products. The patterns transfer well, but the specifics (repo paths, branch naming, ADO project names, style conventions) are Team Charlie-shaped. Open the `SKILL.md` and look for:
+These skills are **starting points**, not finished products. The patterns transfer well, but the specifics (repo paths, branch naming, ADO project names, style conventions) are shaped around one team's setup. Open the `SKILL.md` and look for:
 
 - **Hardcoded paths** — replace with your repos.
 - **Hardcoded ADO project / area / iteration paths** — replace with yours.
@@ -102,7 +102,7 @@ The script walks every subfolder in `packages\`, zips each one into a `dist\<nam
 
 ## Questions / bug reports
 
-Ping **Leslie Poff** (`ldove@synopsys.com`), Staff Engineer, ModelCenter and optiSLang Collaborative Services Team, on Teams or email. Or open an issue on this repo if you spot a bug, an outdated reference, or something that doesn't generalize beyond Team Charlie's setup.
+Ping **Leslie Poff** (`ldove@synopsys.com`), Staff Engineer, ModelCenter and optiSLang Collaborative Services Team, on Teams or email. Or open an issue on this repo if you spot a bug, an outdated reference, or something that doesn't generalize beyond the original author's setup.
 
 ---
 

@@ -1,8 +1,8 @@
-# How I AI Skill — Team Charlie Edition
+# How I AI Skill — Shared Edition
 
 A Cursor Agent Skill that prepares biweekly "How I AI" meeting notes for you automatically. It scans your AI work since the last meeting (skills, scratch folders, standups, agent transcripts), updates your personal AI project list, and drops a one-page prep doc in your Downloads folder.
 
-This is the shared Team Charlie version — same skill Leslie uses, with personal references stripped out and a single config knob for your name.
+This is the shared version — same skill Leslie uses, with personal references stripped out and a single config knob for your name.
 
 ---
 
@@ -52,7 +52,7 @@ Change this line to your standup name:
 "user_name": "Don"
 ```
 
-That's the only required edit. Everything else has sensible Team Charlie defaults. If you ever move your scratch folder or skills directory, override those keys in `config.json` too.
+That's the only required edit. Everything else has sensible defaults. If you ever move your scratch folder or skills directory, override those keys in `config.json` too.
 
 ### 3. (Optional) Set up the calendar auto-trigger
 
