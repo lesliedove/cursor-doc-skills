@@ -30,9 +30,9 @@ When the user says "good morning", "what's on my plate", "brief me", "morning", 
    - If today's standup is already written, run `/recap` instead.
    - **Critical:** `/standup` is a multi-section command file (currently ~10 sections including calendar, reminders, corp-install monitor, doc work dashboard, Cursor spend, and **web dashboard launch**). You MUST re-read `.cursor/commands/create-stand-up-notes.md` at the start of every invocation. Do not abbreviate, do not work from memory. The morning routine listed below is a fallback for non-Team-Charlie workspaces, not a summary of /standup.
 2. **In any other workspace (no /standup):**
-   1. Calendar — delegate to `C:\Users\ldove\.cursor\skills\calendar\SKILL.md`.
+   1. Calendar — delegate to `%USERPROFILE%\.cursor\skills\calendar\SKILL.md`.
    2. Reminders — check `.cursor/reminders.md` in the current workspace.
-   3. Corp-install monitor — delegate to `C:\Users\ldove\.cursor\skills\corp-install-monitor\SKILL.md`.
+   3. Corp-install monitor — delegate to `%USERPROFILE%\.cursor\skills\corp-install-monitor\SKILL.md`.
 
 If any section fails, skip it and continue. The morning briefing always completes. **Never ask for confirmation before starting** — once a morning greeting is detected, run the appropriate routine end to end.
 

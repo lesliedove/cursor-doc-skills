@@ -8,7 +8,9 @@ internal product release pipelines).
 
 Do not redistribute the contents of this repository — including the
 zips in `dist/` and the package sources under `packages/` — outside
-Synopsys without explicit approval from Leslie Poff (`ldove@synopsys.com`).
+Synopsys without explicit approval from Leslie Poff
+(`ldove@synopsys.com`), Staff Engineer, ModelCenter and optiSLang
+Collaborative Services Team.
 
 The general patterns and approaches (skill structure, hook gating,
 credential handling via `Invoke-RestMethod -Credential`, etc.) are fine

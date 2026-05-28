@@ -20,7 +20,7 @@ Read-only diagnostics (fetch definitions, status, logs, timeline, queue health, 
 
 ## Credentials
 
-The `.env` file lives at `C:\Users\ldove\.env` with Ansys network credentials:
+The `.env` file lives at `$env:USERPROFILE\.env` with Ansys network credentials:
 
 ```
 ADO_Username=SYNOPSYS\<username>
@@ -73,7 +73,7 @@ All ticket-related downloads, attachments, helper scripts, extracted images, and
 
 - **Per-ticket files** (attachments, marked-up PDFs, source markdown from developers, ADO API cache JSON, extraction scripts, extracted images): `C:\GitRepos\.scratch\<ticket-id>-<short-slug>\`
 - **Shared temp files** (PR body JSON, cherry-pick JSON, vote JSON, auto-complete JSON — files not tied to a specific ticket): `C:\GitRepos\.scratch\` (root level)
-- **RIL/KIL/RN markdown drafts** stay in `C:\Users\ldove\Downloads\` so they are easy to find and send for review. These are the only ticket-related files that go in Downloads.
+- **RIL/KIL/RN markdown drafts** stay in `%USERPROFILE%\Downloads\` so they are easy to find and send for review. These are the only ticket-related files that go in Downloads.
 
 Folder naming follows the `<ticket-id>-<short-descriptive-slug>` convention (see `.cursor/rules/scratch-folder-naming.mdc`). When downloading an attachment from a ticket or creating a helper script, always use `C:\GitRepos\.scratch\<ticket-id>-<slug>\` (creating the subdirectory if it does not exist). Never place temp files directly in the repo working tree or in arbitrary locations.
 
@@ -313,7 +313,7 @@ Display the verdict prominently:
 
 ### Documentation workflows (`/ado doc`)
 
-All `/ado doc` subcommands have been moved to the dedicated **ado-doc** skill at `C:\Users\ldove\.cursor\skills\ado-doc\SKILL.md`. Read that skill for:
+All `/ado doc` subcommands have been moved to the dedicated **ado-doc** skill at `%USERPROFILE%\.cursor\skills\ado-doc\SKILL.md`. Read that skill for:
 
 - `/ado doc <id>` — full ticket workflow (fetch, branch, apply changes)
 - `/ado doc <id> update` — incremental update from new comments
@@ -322,7 +322,7 @@ All `/ado doc` subcommands have been moved to the dedicated **ado-doc** skill at
 - `/ado doc cherry [pr-id]` — cherry-pick forward
 ### Release deliverables (RIL, KIL, Release Notes)
 
-RIL, KIL, and Release Notes commands have been moved to the dedicated **ado-release-docs** skill at `C:\Users\ldove\.cursor\skills\ado-release-docs\SKILL.md`. Read that skill for:
+RIL, KIL, and Release Notes commands have been moved to the dedicated **ado-release-docs** skill at `%USERPROFILE%\.cursor\skills\ado-release-docs\SKILL.md`. Read that skill for:
 
 - `/ado doc RIL <id>` / `/ado doc RIL` — Resolved Issues List (draft / insert)
 - `/ado doc KIL <id>` / `/ado doc KIL` — Known Issues List (draft / insert)
@@ -330,7 +330,7 @@ RIL, KIL, and Release Notes commands have been moved to the dedicated **ado-rele
 
 ### Sprint review (`/ado Charlie`)
 
-Sprint review materials generation has been moved to the dedicated **sprint-review** skill at `C:\Users\ldove\.cursor\skills\sprint-review\SKILL.md`. Read that skill for `/ado Charlie <iterations>`.
+Sprint review materials generation has been moved to the dedicated **sprint-review** skill at `%USERPROFILE%\.cursor\skills\sprint-review\SKILL.md`. Read that skill for `/ado Charlie <iterations>`.
 
 ### `/ado dashboard [id]` — Current work dashboard with standup context
 
@@ -358,7 +358,7 @@ A child User Story is "Active" if it or any of its grandchildren are Active. A c
 
 Read standup files (current month + previous month) from:
 ```
-C:\Users\ldove\OneDrive - Synopsys, Inc\Collaborative Services - oSL and MC - Team Charlie\Stand Ups\2026\
+<your-standup-folder>\
 ```
 
 For each **Active** item, search Leslie's standup sections for the ticket ID or title keywords (case-insensitive). Also use the alias table (e.g., "screenshot project" → 1419313, "oSP3D API conversion" → 1445200).
@@ -372,7 +372,7 @@ For **Backlog** items: skip standup cross-referencing entirely. These haven't be
 
 #### Step 4 — Generate the markdown dashboard
 
-Output file: `C:\Users\ldove\Downloads\Dashboards\dashboard_1419305_YYYY-MM-DD.md` (using today's date, e.g., `dashboard_1419305_2026-04-27.md`)
+Output file: `%USERPROFILE%\Downloads\Dashboards\dashboard_1419305_YYYY-MM-DD.md` (using today's date, e.g., `dashboard_1419305_2026-04-27.md`)
 
 **Structure:**
 

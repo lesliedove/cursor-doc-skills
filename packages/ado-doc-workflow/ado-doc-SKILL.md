@@ -15,7 +15,7 @@ End-to-end commands for documentation work items: fetch a ticket from ADO, set u
 
 ## Credentials
 
-Load credentials from `C:\Users\ldove\.env` and use the shared NTLM helper (same as the [ADO skill](../ado/SKILL.md)):
+Load credentials from `$env:USERPROFILE\.env` and use the shared NTLM helper (same as the [ADO skill](../ado/SKILL.md)):
 
 ```powershell
 . "$env:USERPROFILE\.cursor\lib\Ado-Auth.ps1"
@@ -42,7 +42,7 @@ All ticket-related downloads, attachments, helper scripts, extracted images, and
 
 - **Per-ticket files** (attachments, marked-up PDFs, source markdown from developers, ADO API cache JSON, extraction scripts, extracted images): `C:\GitRepos\.scratch\<ticket-id>-<short-slug>\`
 - **Shared temp files** (PR body JSON, cherry-pick JSON, vote JSON, auto-complete JSON -- files not tied to a specific ticket): `C:\GitRepos\.scratch\` (root level)
-- **RIL/KIL/RN markdown drafts** stay in `C:\Users\ldove\Downloads\` so they are easy to find and send for review. These are the only ticket-related files that go in Downloads.
+- **RIL/KIL/RN markdown drafts** stay in `%USERPROFILE%\Downloads\` so they are easy to find and send for review. These are the only ticket-related files that go in Downloads.
 
 Folder naming follows the `<ticket-id>-<short-descriptive-slug>` convention (see `.cursor/rules/scratch-folder-naming.mdc`). When downloading an attachment from a ticket or creating a helper script, always use `C:\GitRepos\.scratch\<ticket-id>-<slug>\` (creating the subdirectory if it does not exist). Never place temp files directly in the repo working tree or in arbitrary locations.
 
@@ -429,7 +429,7 @@ DocBook conventions in this repo:
 
 #### Step 7b -- Resize new images
 
-After placing any new image files, read and follow the **image-resize** skill at `C:\Users\ldove\.cursor\skills\image-resize\SKILL.md` to resize them before committing. Only resize **newly added** images (i.e., files being added in this working branch). Do not resize images that already exist in the repo and are not being replaced.
+After placing any new image files, read and follow the **image-resize** skill at `%USERPROFILE%\.cursor\skills\image-resize\SKILL.md` to resize them before committing. Only resize **newly added** images (i.e., files being added in this working branch). Do not resize images that already exist in the repo and are not being replaced.
 
 After making changes, present a summary of all files modified/created.
 
@@ -913,7 +913,7 @@ If any cherry-picks had conflicts, note which target branches need manual resolu
 
 ### Release deliverables (RIL, KIL, Release Notes)
 
-All release documentation commands have been moved to the dedicated **ado-release-docs** skill at `C:\Users\ldove\.cursor\skills\ado-release-docs\SKILL.md`. Read that skill for:
+All release documentation commands have been moved to the dedicated **ado-release-docs** skill at `%USERPROFILE%\.cursor\skills\ado-release-docs\SKILL.md`. Read that skill for:
 
 - `/ado doc RIL <id>` -- generate Resolved Issues List draft
 - `/ado doc RIL` -- insert approved RIL into DocBook XML

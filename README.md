@@ -1,6 +1,6 @@
 # cursor-doc-skills
 
-A catalog of [Cursor](https://cursor.com) skills built by **Leslie Poff** (Team Charlie, Collaborative Services, Synopsys) for AI-driven documentation work on Ansys ModelCenter, optiSLang, and Developer-Portal API docs.
+A catalog of [Cursor](https://cursor.com) skills built by **Leslie Poff**, Staff Engineer, ModelCenter and optiSLang Collaborative Services Team, for AI-driven documentation work on Ansys DITA, DocBook, and Developer-Portal API docs.
 
 Each subfolder in [`packages/`](packages) is a standalone Cursor skill you can drop into your own Cursor install. Pre-built zips for each package live in [`dist/`](dist) for one-click install.
 
@@ -100,20 +100,9 @@ The script walks every subfolder in `packages\`, zips each one into a `dist\<nam
 
 ---
 
-## Contributing
+## Questions / bug reports
 
-Pull requests welcome. Two main flavors of change:
-
-- **Add a new package** — drop a `packages\<your-skill>\` folder with a `SKILL.md` and a `README.md`, run `make-packages.ps1`, and PR.
-- **Update an existing package** — edit files in `packages\<name>\`, regenerate the zip, and PR.
-
-Open an issue if you find a bug, an outdated reference, or something that doesn't generalize beyond Team Charlie's setup.
-
----
-
-## Questions
-
-Ping **Leslie Poff** (`ldove@synopsys.com`) on Teams or email.
+Ping **Leslie Poff** (`ldove@synopsys.com`), Staff Engineer, ModelCenter and optiSLang Collaborative Services Team, on Teams or email. Or open an issue on this repo if you spot a bug, an outdated reference, or something that doesn't generalize beyond Team Charlie's setup.
 
 ---
 

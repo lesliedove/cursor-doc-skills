@@ -2,17 +2,17 @@
 #
 # WHY THIS EXISTS
 # ===============
-# The previous pattern (curl.exe -u "$($env:ADO_Username):$($env:ADO_Password)")
-# leaks the literal password value into the process command line of curl.exe,
-# where any host-level monitoring (WMI Win32_Process.CommandLine, Defender for
-# Endpoint, Sysmon, EDR) captures it. Synopsys security flagged this on
-# 2026-05-28.
-#
-# The fix: do all auth'd HTTP from inside PowerShell using the cmdlets
+# Do all auth'd HTTP from inside PowerShell using the cmdlets
 # Invoke-RestMethod / Invoke-WebRequest with -Credential <PSCredential>.
 # A PSCredential object holds the password as a SecureString in PS-process
 # memory and never appears in argv of any child process (because there is no
 # child process -- IRM is in-process .NET HttpClient, not curl.exe).
+#
+# Do NOT shell out to curl.exe -u "$($env:ADO_Username):$($env:ADO_Password)".
+# PowerShell expands the env vars before calling CreateProcess, so the literal
+# password lands in curl's argv where any host-level process monitoring
+# (WMI Win32_Process.CommandLine, Defender for Endpoint, Sysmon, EDR)
+# captures it. Variable references do not prevent the leak.
 #
 # USAGE
 # =====
@@ -36,15 +36,14 @@
 # ======
 # Never use curl.exe / wget / Invoke-Expression with -u "$env:ADO_Username:..."
 # or any other shape where PowerShell expands the credential variable into
-# argv of an external process. The hook gate-credential-leak.ps1 will block
-# you. There is no exception.
+# argv of an external process.
 
 $script:AdoAuthCachedCred = $null
 
 function Get-AdoCredential {
   <#
   .SYNOPSIS
-  Build a [PSCredential] from C:\Users\ldove\.env and cache it for the session.
+  Build a [PSCredential] from $env:USERPROFILE\.env and cache it for the session.
 
   .PARAMETER EnvFile
   Path to the env file. Defaults to %USERPROFILE%\.env.

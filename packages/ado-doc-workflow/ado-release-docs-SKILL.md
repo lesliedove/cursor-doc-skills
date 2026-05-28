@@ -116,7 +116,7 @@ For each qualifying child ticket, write **one bullet point** with:
 
 #### Step 5 -- Generate the markdown file
 
-Create a markdown file at `C:\Users\ldove\Downloads\<product>_RIL_<release>.md` with this naming convention:
+Create a markdown file at `%USERPROFILE%\Downloads\<product>_RIL_<release>.md` with this naming convention:
 - `<product>` = `oSL` for optiSLang, `MC` for ModelCenter
 - `<release>` = release version like `2026R1_SP1`, `2027R1`, `2026R2`, etc.
 - Example: `oSL_RIL_2026R1_SP1.md`, `MC_RIL_2027R1.md`
@@ -256,7 +256,7 @@ For each qualifying child ticket, write:
 
 #### Step 5 -- Generate the markdown file
 
-Create a markdown file at `C:\Users\ldove\Downloads\<product>_KIL_<release>.md` with the same naming convention as RIL (e.g., `oSL_KIL_2026R1_SP1.md`).
+Create a markdown file at `%USERPROFILE%\Downloads\<product>_KIL_<release>.md` with the same naming convention as RIL (e.g., `oSL_KIL_2026R1_SP1.md`).
 
 Structure:
 
@@ -376,7 +376,7 @@ For each qualifying child ticket, write:
 
 #### Step 5 -- Generate the markdown file
 
-Create a markdown file at `C:\Users\ldove\Downloads\<product>_RN_<release>.md` with the same naming convention as RIL (e.g., `oSL_RN_2027R1.md`).
+Create a markdown file at `%USERPROFILE%\Downloads\<product>_RN_<release>.md` with the same naming convention as RIL (e.g., `oSL_RN_2027R1.md`).
 
 Structure:
 

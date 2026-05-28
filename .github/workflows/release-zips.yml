@@ -1,0 +1,40 @@
+name: Release zips
+
+# When you push a tag like v1.0.0, this builds fresh zips from every
+# subfolder in packages/ and attaches them to a GitHub Release. The
+# committed copies in dist/ are convenience artifacts for HEAD; the
+# release assets are the "official" downloadable bundles for that tag.
+#
+# To cut a release:
+#   git tag v1.0.0
+#   git push origin v1.0.0
+#
+# That's it -- this workflow handles the rest.
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build zips
+        shell: pwsh
+        run: |
+          .\scripts\make-packages.ps1
+          Get-ChildItem dist | Format-Table Name, Length
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*.zip
+          generate_release_notes: true
+          fail_on_unmatched_files: true
