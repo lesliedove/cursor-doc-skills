@@ -1,7 +1,7 @@
 # AI for Documentation -- Project Summaries
 
 *Leslie Poff, Staff Engineer, ModelCenter and optiSLang Collaborative Services Team*
-*Last updated: May 15, 2026*
+*Last updated: May 29, 2026*
 
 These are AI-driven documentation projects developed using Cursor IDE with Claude. Each project was built to solve a real pain point in our day-to-day documentation workflow. Most produce reusable Cursor "skills" (instruction files that teach the AI how to do a specific task) and "rules" (persistent guidelines the AI follows when editing files).
 
@@ -139,7 +139,8 @@ Any product team can run this converter against their DITA or DocBook source to 
 
 ## 4. AI Doc Accuracy Testing
 
-**Status:** In progress
+**Status:** In progress (first full results in; follow-up tickets filed)
+**Skill package:** `skill-packages/help-bot-doc-testing.zip`
 
 ### Problem
 
@@ -159,7 +160,15 @@ Building a reusable test harness that:
 4. Identifies documentation gaps where bots give wrong or incomplete answers
 5. Fixes the source documentation and retests until bots return correct answers
 
-**Progress (May 2026):** Prototype mocked up and tested with the full question set for both ModelCenter and optiSLang. The idea was inspired by the Write the Docs 2026 conference — specifically the "Web Help and Crawlers" talk about building test suites for documentation accuracy through AI answer engines.
+**Progress (May 2026):** Prototype mocked up and tested with the full 50-question set across the public AI engines on May 14. Web-side scoring rolled up to **32% PASS / 46% PARTIAL / 22% FAIL** (MC 24% PASS, oSL 40% PASS).
+
+Then ran the **same 50 questions through a corpus-side self-RAG harness** (May 28) for an apples-to-apples comparison: corpus-side rolled up to **44% DOCS-PASS / 40% DOCS-PARTIAL / 16% DOCS-FAIL**. The trajectory matters more than the absolute numbers -- 17 of 50 questions improved from web FAIL/PARTIAL to corpus PASS/PARTIAL, which is direct evidence that for those questions the answer *is* in our docs but the public web can't surface it (crawlability, JavaScript nav, auth walls, Sphinx outranking).
+
+The split corpus-vs-web view turned what would have been a single "the bots are wrong" signal into two separate, actionable signals: "the doc doesn't have the answer" (author the content) vs. "the doc has the answer but the web can't reach it" (crawlability / `llms.txt` / cross-linking infrastructure).
+
+**Follow-up tickets** rolled the 18 net-new gaps into six bot-discoverability category tasks (BOT-MC-1/2/3/4, BOT-OSL-1/2) plus one systemic infrastructure ticket (BOT-G, the highest single-leverage item). Three additional tickets were fed back upstream to the LLM-doc-converter project to fix retrieval-quality bugs surfaced during the corpus run.
+
+The idea originally came from the Write the Docs 2026 conference -- specifically the "Web Help and Crawlers" talk about building test suites for documentation accuracy through AI answer engines.
 
 ### Impact for Corp Doc
 
@@ -300,6 +309,8 @@ This takes 15-30 minutes of clicking through ADO, Outlook, Jenkins, and git.
 6. **API pipeline health** -- Checks 8 API doc build pipelines for failures
 7. **Sprint review folder** -- On the first day of a new sprint, creates the review folder and copies the template
 8. **Friday repo monitor** -- Checks if Jason's Friday installer repo has new skills or hooks
+9. **Release URL bump check** -- In the 14 days before an FCA doc-freeze, scans the doc repos for hardcoded previous-release URLs (`/corp/v\d{3}/`, `/ModelCenter/v\d{3}/`, `/optiSLang/v\d{3}/`) that need to roll forward when the new release publishes. Silent outside the alert window.
+10. **How I AI meeting prep** -- On Fridays, detects the biweekly "How I AI" meeting on Monday's calendar, discovers new AI work since the last meeting, updates this summary doc and the master AI projects list, and generates a conversational prep doc.
 
 The entire briefing completes in under 60 seconds and presents a clean, structured summary.
 
@@ -385,6 +396,14 @@ Automated the process of ensuring that documentation changes on one release bran
 ### Doc Reorganization Analysis
 
 Used AI (GPT-5 via Microsoft 365 Copilot) to analyze user guides for user-friendliness and recommend restructuring. Applied to both ModelCenter (DITA) and optiSLang (DocBook) documentation. The AI recommended new landing pages and topic reordering based on user-task analysis.
+
+### API Doc Pipeline Handoff (Agentic Project)
+
+When the oSL Doxygen-based API doc pipeline came over from Michael Wutzig as part of the broader DevOps transition, I stood the takeover up as an *agentic* project: the Cursor AI did the discovery, automation, monitoring, and triage in parallel with the human KT meetings. The agent cloned the upstream repos, traced the pipeline (`build_docs.py` → Doxygen XML → Seaborg → Markdown → DevRelDocs), ran the proof-of-concept build, and captured the entire walkthrough in a runbook. After the KT meeting, it also rewrote the acceptance criteria to drop items that turned out to be corporate-level scope and not the team's responsibility. The whole pipeline is now wrapped in a single Cursor skill (`api-doc-build`) so it can be run end-to-end from a one-line command. Transferable pattern: use AI for the discovery half of any handoff, not just the post-handoff execution.
+
+### Self-RAG Validation Harness
+
+Built as the corpus-side complement to the AI Doc Accuracy Testing project above. Instead of asking "what does ChatGPT/Claude/Perplexity find on the public web?", it asks "what does a RAG agent retrieve from our own LLM-docs corpus, and is it enough to answer the question?" Running both views on the same question set lets us separate "content gap" from "discoverability gap" -- two different fixes, two different owners. As a side effect, the corpus run surfaced three bugs in the upstream LLM-doc-converter (stub aggregator topics, generic topic titles, dropped deeply-nested sections) that affect retrieval quality for every consumer of the corpus, not just bot tests.
 
 ---
 
