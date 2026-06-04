@@ -90,7 +90,7 @@ Do not submit a hybrid package combining REST API and Library/SDK.
 
 - Lowercase with hyphens: `getting-started.md`, not `Getting_Started.md`.
 - Use `-` not `_` (URL compatibility).
-- Each subdirectory should contain its own `index.md`.
+- Subdirectory `index.md` files are **Nice to have**, not required. Don't flag missing subsection `index.md` as Must fix or Should fix.
 
 ### Recommended structure
 
@@ -140,6 +140,9 @@ Documentation-package/
 - OpenAPI/Swagger spec must validate in [Swagger Editor](https://editor.swagger.io/) without errors.
 - Documentation must be in GitHub Flavored Markdown.
 - Validate with Vale (Google style).
+- `description/index.md`: first heading is **H2** (typically `## Introduction`); section headings (`Introduction`, `Resources`, `Authenticate`, `Send API requests`, `Responses`, optional `Platform overview`) use **H2**. **No H1** in the file.
+- `changelog/changelog.md`: first heading is **H2** (`## Changelog` or a category like `## Added` / `## Fixed` / `## Changed` / `## Deprecated` / `## Removed`). **No H1** in the file.
+- Binary images live under `description/images/` or `description/assets/` only — not at package root.
 
 ### Directory structure
 
@@ -148,12 +151,13 @@ Documentation-package/
 ├── docfx.json
 ├── openapi.yaml
 ├── description/
-│   └── index.md
+│   ├── index.md
+│   └── images/                   (or assets/, if needed)
 └── changelog/
     └── changelog.md
 ```
 
-Only `docfx.json` and the spec file at root.
+Only `docfx.json` and the spec file at root. No `toc.yml`, no root-level `index.md`.
 
 ---
 

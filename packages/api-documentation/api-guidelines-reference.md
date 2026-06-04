@@ -2,6 +2,8 @@
 
 This is the detailed reference for Ansys API, library, and SDK documentation. Read SKILL.md first for the essentials. Use this file when you need full details on writing guidelines, metadata configuration, or the compliance checklist.
 
+> **Source of truth.** The canonical rubric is `.github/AGENTS.md` in [ansys/DevRelDocs](https://github.com/ansys/DevRelDocs), backed by the published guidelines site at `https://doc-guidelines.sandbox.ansysapis.com/docs/`. When this file disagrees with AGENTS.md or the sandbox site, those win. Use the sandbox URL (not GitHub repo links) for **Reference** lines in any compliance report.
+
 ---
 
 ## 1. Terminology
@@ -73,7 +75,7 @@ Classify before applying any guidelines:
 | **API (prose)** | Markdown prose | `index.md`, `changelog.md`, `toc.yml`, `docfx.json` at root |
 | **Library/SDK** | Markdown (possibly generated) | `index.md`, `changelog.md`, `toc.yml`, `docfx.json` at root |
 
-Do not combine REST API and Library/SDK in a single migration package.
+**Hybrid packages** (e.g., REST API + a client library, or API prose + a small utility library) are allowed. Apply every checklist that matches a delivered surface — `§3.4` for REST API, `§4` for Library/SDK, `§3.6` for non-HTTP/non-gRPC protocols, etc.
 
 ---
 
@@ -88,7 +90,7 @@ All keys must be lowercase.
 | `title` | Documentation title + version (e.g. "DPF C++ client library 2026 R1") |
 | `version` | Format: `YYYY R1\|R2 [SP01-SP04]` |
 | `summary` | Brief description of the documentation (not the product) |
-| `physics` | Product collection category (see `physics.yml`) |
+| `physics` | Product collection category (see `physics.yml` under `config/portal-metadata/` on the active branch) |
 
 ### REST API metadata split
 
@@ -168,17 +170,18 @@ File-level metadata uses YAML frontmatter. File-level values add to (not replace
 
 ### Descriptive content (Markdown)
 
-The primary descriptive file must include:
+The primary descriptive file (`description/index.md` for REST API, `index.md` for API prose) must include:
 
 1. **Introduction**
    - Capabilities and features.
    - Protocol definition.
    - Testing environment info.
 
-2. **Platform overview**
+2. **Platform overview** *(Nice to have)*
    - Explanatory diagram (API relationships).
    - Application development description.
    - Communication flow explanation.
+   - Note: a missing Platform overview is **Nice to fix** at most, never Must fix or Should fix.
 
 3. **Resources** (REST APIs) — define handled resources.
 
@@ -194,6 +197,8 @@ The primary descriptive file must include:
    - Response table (types, values, descriptions).
    - Response format (e.g. JSON).
    - Pagination info (if applicable).
+
+For **REST API** descriptive files, the section headings (`## Introduction`, `## Resources`, `## Authenticate`, `## Send API requests`, `## Responses`) use **H2**. The file must contain **no H1** — Docfx supplies the page title from `info.title` in the OpenAPI spec.
 
 ### File naming
 
@@ -302,7 +307,7 @@ service UserService {
 
 Required sections:
 
-1. **Introduction** (`index.md`): high-level explanation + main features. Platform overview with diagram, context, integration explanation.
+1. **Introduction** (`index.md`): high-level explanation, main features, target audience, language/OS support, library role (client/server/both). **Platform overview** material (architecture diagram, integration explanation) is **Nice to have** and usually lives inside Introduction; treat a missing Platform overview as Nice to fix at most, not Must fix or Should fix.
 2. **Getting started**: dependencies, system requirements, step-by-step installation, dev environment config, licensing.
 3. **User guide**: how to use the library/SDK.
 4. **Usage examples**: comprehensive code examples, common use cases.
@@ -348,9 +353,12 @@ Documentation-package/
 ## 8. File structure and naming
 
 - File names: lowercase with hyphens. Use `-` not `_` (URL compatibility).
-- Each subdirectory: include its own `index.md`.
-- Images: dedicated `images/` directory, lowercase extensions.
-- `toc.yml`: exactly one per package tree (no nested TOCs).
+- Subdirectory `index.md` files (e.g. `getting-started/index.md`) are **Nice to have**, not required. Do not flag missing subsection `index.md` as Must fix or Should fix.
+- **Image and asset folders** (Should have when figures are used):
+  - **REST API**: place binary images and diagrams under **`description/images/`** or **`description/assets/`** only — not at package root.
+  - **API (prose) / Library/SDK**: place binary images and diagrams under any `images/` or `assets/` directory in the package tree (not loose beside Markdown or `docfx.json`).
+  - Image extensions are lowercase. Informative images have descriptive alt text.
+- `toc.yml`: exactly one per package tree (no nested TOCs). Not required for **REST API-only** packages.
 - Code blocks: always specify language for syntax highlighting.
 - Encoding: UTF-8 (mandatory).
 
@@ -390,6 +398,17 @@ Documentation-package/
 
 ## 11. Documentation compliance checklist
 
+### Compliance reports
+
+When asked for a compliance check, self-review, or pre-PR verification, write findings to **`documentation-compliance-report.md`** in the package root (next to `docfx.json`):
+
+- Title, ISO date, package path relative to the repo root.
+- Summary line: Approved / Needs Minor Revisions / Needs Major Revisions (justified per severity rules below).
+- Classification: only the type(s) that apply, with evidence. No "N/A" filler.
+- **Issues**: violations only — never tag a passing observation with a severity.
+- **Action items**: mirror open Issues only, ordered by severity.
+- Each Issue and Action item: tagged with **Must fix**, **Should fix**, or **Nice to fix**, plus an absolute **Reference** link on the sandbox guidelines site (`https://doc-guidelines.sandbox.ansysapis.com/docs/...`) when the finding maps to a tagged guideline rule. **Do not** use `github.com/ansys-internal/developer-documentation-guidelines` URLs in Reference lines.
+
 ### Style and writing
 
 - Follows Google developer documentation style guide.
@@ -401,27 +420,35 @@ Documentation-package/
 - Passes Markdownlint validation.
 - Passes Vale linting (Google style).
 - All links functional.
-- Images display correctly (lowercase extensions).
+- Images display correctly (lowercase extensions); informative images have alt text (Should have).
 - Tested locally with Docfx.
+- Each Markdown file starts with an H1 as the first heading and contains exactly one H1, **except** REST API `description/index.md` and `changelog/changelog.md`, which must start with **H2** and contain **no H1**.
 
 ### Structure
 
-- Correct package classification applied.
-- Required root files present (`index.md`, `changelog.md`, `docfx.json`, `toc.yml` as applicable).
+- Correct package classification applied (including hybrid surfaces).
+- Required root files present per classification (`index.md`, `changelog.md`, `docfx.json`, `toc.yml` for API/Library/SDK; `docfx.json` + spec, `description/index.md`, `changelog/changelog.md` for REST API).
 - Logical directory organization.
-- REST API packages follow dedicated structure.
+- REST API packages follow dedicated structure (no root `toc.yml` or `index.md`).
 
 ### Metadata
 
 - All required metadata fields populated.
-- Taxonomy values validated against YAML sources.
+- Taxonomy values validated against YAML sources (typically under `config/portal-metadata/` on the active branch).
 - `doc_type` set correctly for REST API and Doxygen packages.
+- `programming language` validated when set; omitting it is acceptable for language-agnostic packages.
 
-### Review severity labels
+### Severity tagging (mandatory)
 
-- **Must fix**: blocking issues — PR cannot merge.
+| Guideline tag | Review severity when not met |
+|---------------|------------------------------|
+| **Must have** | **Must fix** |
+| **Should have** | **Should fix** |
+| **Nice to have** | **Nice to fix** |
+
+- **Must fix**: blocking issue — PR cannot merge.
 - **Should fix**: important but not blocking.
-- **Nice to fix**: optional improvements.
+- **Nice to fix**: optional improvement.
 
 ### Approval criteria
 

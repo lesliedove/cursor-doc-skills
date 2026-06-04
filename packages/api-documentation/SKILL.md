@@ -9,9 +9,37 @@ description: >-
 
 # Ansys API Documentation Guidelines
 
+## Source of truth
+
+The canonical rubric is **`.github/AGENTS.md`** in [ansys/DevRelDocs](https://github.com/ansys/DevRelDocs). When that file disagrees with anything below, **AGENTS.md wins**. Before doing a real compliance review, fetch the latest copy:
+
+- Local clone (if available): `<DevRelDocs>/.github/AGENTS.md`
+- Published guidelines site: `https://doc-guidelines.sandbox.ansysapis.com/docs/`
+
+Use the sandbox guidelines URL (not GitHub repo links) for **Reference** lines in any compliance report. AGENTS.md tracks the published site, including its tagged **Must have / Should have / Nice to have** requirements.
+
+## Compliance reports
+
+When asked for a compliance check, self-review, or pre-PR verification, create or update **`documentation-compliance-report.md`** in the package root (next to `docfx.json`). The report should:
+
+- Classify the package per section 1 below; include only the type(s) that apply (no "N/A" filler).
+- List **Issues** as violations only — never tag a passing check with a severity.
+- Tag every issue and action item with exactly one severity: **Must fix**, **Should fix**, or **Nice to fix** (mapping below).
+- Add a **Reference** link on each issue tied to a tagged guideline rule, using the sandbox URL above.
+
+### Severity mapping (guideline tag → review severity)
+
+| Guideline tag | Review severity when not met |
+|---------------|------------------------------|
+| **Must have** | **Must fix** |
+| **Should have** | **Should fix** |
+| **Nice to have** | **Nice to fix** |
+
+Approval line: **Approved** = no open Must fix; **Needs Minor Revisions** = no Must fix; **Needs Major Revisions** = one or more Must fix.
+
 ## 1. Classify the package first
 
-Before applying any rules, classify the documentation package as exactly one type:
+Before applying any rules, classify the documentation package by which type(s) apply:
 
 | Type | Authoritative reference | Key indicator |
 |------|------------------------|---------------|
@@ -19,7 +47,7 @@ Before applying any rules, classify the documentation package as exactly one typ
 | **API (prose)** | Markdown prose | Wire protocol or message-based API documented in Markdown, not OpenAPI |
 | **Library/SDK** | Markdown (possibly generated from Doxygen/Sphinx/proto) | Language-specific interface with classes, methods, functions |
 
-Do not combine REST API and Library/SDK in a single migration package.
+**Hybrid packages** are allowed: a single package may document a wire API (REST API or API) **and** a client Library/SDK. When hybrid, apply every checklist that matches a delivered surface.
 
 ## 2. Required files by type
 
@@ -103,7 +131,8 @@ Title and version come from the OpenAPI `info` object for REST API packages.
 
 ### Optional metadata
 
-`product`, `status` (`published`/`unpublished`), `access control`, `programming language`, `author`, `author email`, `description` (file-level only, for SEO), `date` (ISO-8601), `keywords`, `audience`, `context`.
+- `programming language` (**Nice to have**): use a value from `programming_language.yml` when a single language filter is meaningful. Skip for language-agnostic packages (e.g., many REST APIs). If set, the value must be valid.
+- Other optional fields: `product`, `status` (`published`/`unpublished`), `access control`, `author`, `author email`, `description` (file-level only, for SEO), `date` (ISO-8601), `keywords`, `audience`, `context`.
 
 ## 6. API reference quality
 
@@ -134,11 +163,13 @@ Title and version come from the OpenAPI `info` object for REST API packages.
 
 Required sections in descriptive content:
 
-1. **Introduction** (`index.md`): purpose, features, platform overview with diagram.
+1. **Introduction** (`index.md`): purpose, features, target audience, language/OS support, library role (client/server/both).
 2. **Getting started**: dependencies, installation, dev environment config, licensing.
 3. **User guide**: how to use the library/SDK.
 4. **Usage examples**: comprehensive code examples, common use cases.
 5. **Changelog** (`changelog.md`): latest version at top, categorized as Added/Changed/Deprecated/Removed/Fixed.
+
+**Platform overview** (architecture diagram, integration explanation) is **Nice to have**, typically inside the introduction. Do not flag a missing platform overview as Must fix or Should fix.
 
 Reference documentation requirements:
 
@@ -172,6 +203,14 @@ Documentation-package/
 └── docfx.json
 ```
 
+Subdirectory `index.md` files (e.g., `getting-started/index.md`) are **Nice to have**, not required. Do not flag missing subsection `index.md` as Must fix or Should fix.
+
+**Image and asset folders** (Should have when figures are used):
+
+- **API (prose) / Library/SDK**: place binary images and diagrams under any `images/` or `assets/` directory in the package tree (not loose beside Markdown or `docfx.json`).
+- File extensions are lowercase (`.png`, `.jpg`).
+- Informative images have descriptive alt text (Should have).
+
 ### REST API-only packages
 
 ```
@@ -179,10 +218,18 @@ Documentation-package/
 ├── docfx.json
 ├── openapi.yaml
 ├── description/
-│   └── index.md
+│   ├── index.md
+│   └── images/                   (or assets/, if needed)
 └── changelog/
     └── changelog.md
 ```
+
+REST API requirements:
+
+- `description/index.md` first heading is **H2** (typically `## Introduction`); section headings (`Introduction`, `Resources`, `Authenticate`, `Send API requests`, `Responses`, optional `Platform overview`) use **H2**. **No H1** in the file.
+- `changelog/changelog.md` first heading is **H2** (`## Changelog` or a category like `## Added`, `## Fixed`, `## Changed`, `## Deprecated`, `## Removed`). **No H1** in the file.
+- Binary images live under `description/images/` or `description/assets/` only — not at package root.
+- `toc.yml` and a root-level `index.md` are **not** required for REST API-only packages.
 
 ## 9. TOC configuration (`toc.yml`)
 
@@ -230,19 +277,37 @@ Before submitting a PR, verify:
 - Markdownlint passes.
 - Vale passes (Google style rules).
 - All links are functional.
-- Images render with lowercase extensions.
+- Images render with lowercase extensions; informative images have alt text.
 - Docfx builds clean locally.
 - Required metadata fields are populated.
-- Taxonomy values validated against YAML sources (`physics.yml`, `product.yml`).
-- Package structure matches the classified type.
+- Taxonomy values validated against YAML sources (`physics.yml`, `product.yml`, `programming_language.yml`) — typically under `config/portal-metadata/` on the active branch.
+- Package structure matches the classified type (and any hybrid surfaces).
+- For REST API: `description/index.md` and `changelog/changelog.md` use H2-first headings (no H1).
+
+### Compliance reports
+
+When asked for a compliance check, write findings to **`documentation-compliance-report.md`** in the package root. Include:
+
+- Title, ISO date, package path relative to repo root.
+- **Summary line**: Approved / Needs Minor Revisions / Needs Major Revisions (justified per severity rules below).
+- **Classification**: only the type(s) that apply, with evidence. No "N/A" filler for types that don't apply.
+- **Issues**: violations only — never tag a passing observation with a severity.
+- **Action items**: mirror open Issues only, ordered by severity.
+- Each Issue and Action item: tagged with **Must fix**, **Should fix**, or **Nice to fix**, plus an absolute **Reference** link on the sandbox guidelines site (`https://doc-guidelines.sandbox.ansysapis.com/docs/...`) when the finding maps to a tagged guideline rule. **Do not** use `github.com/ansys-internal/developer-documentation-guidelines` URLs in Reference lines.
 
 ### Review severity
 
-- **Must fix**: blocking — PR cannot merge.
-- **Should fix**: important but not blocking.
-- **Nice to fix**: optional improvement.
+| Guideline tag | Review severity when not met | Effect |
+|---|---|---|
+| **Must have** | **Must fix** | Blocks Approved; drives Needs Major Revisions |
+| **Should have** | **Should fix** | Drives Needs Minor Revisions (or Major if widespread) |
+| **Nice to have** | **Nice to fix** | Optional; does not block Approved |
 
-Approval: no open "Must fix" items = approved.
+Approval line:
+
+- **Approved** — no open Must fix; no Should fix the reviewer treats as release-blocking.
+- **Needs Minor Revisions** — no Must fix; one or more Should fix or Nice to fix.
+- **Needs Major Revisions** — one or more Must fix.
 
 ## 13. PR process
 
