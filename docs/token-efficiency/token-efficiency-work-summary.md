@@ -61,9 +61,9 @@ Reformatted from raw dump to structured markdown (decisions, open questions, top
 
 ---
 
-## Part 2 — Always-on rule (`~/.cursor/rules/token-budget.mdc`)
+## Part 2 — Always-on rule (`rules/token-budget.mdc`)
 
-New **always-applied** rule so every Flo session nudges token discipline without Leslie re-explaining it.
+New **always-applied** rule so every Flo session nudges token discipline without Leslie re-explaining it. **Repo copy:** [`rules/token-budget.mdc`](../../rules/token-budget.mdc) — install to `%USERPROFILE%\.cursor\rules\` and set `alwaysApply: true`.
 
 | Behavior | Why |
 |---|---|
@@ -83,9 +83,8 @@ New **always-applied** rule so every Flo session nudges token discipline without
 
 ## Part 3 — Weekly measurement (`/token-check` skill)
 
-**Location:** `~/.cursor/skills/token-check/SKILL.md`  
-**History dir:** `~/.cursor/bot/token-history/` (JSON snapshots per week)  
-**First run:** Friday 2026-06-12 (reminder in Team Charlie `.cursor/reminders.md`)
+**Package:** [`packages/token-check`](../../packages/token-check) (shared edition with `config.json`)  
+**History dir:** `%USERPROFILE%\.cursor\bot\token-history\` (JSON snapshots per week)
 
 What it does:
 
@@ -144,9 +143,8 @@ Progression:
 
 ## Part 6 — `token-workflow` skill (multi-phase tickets)
 
-**Location:** `~/.cursor/skills/token-workflow/`  
-**Invoke:** `/token-workflow <ticket-id>` or "plan token workflow for 12345"  
-**Wired into:** `flo.mdc`, `flo/SKILL.md`, `token-budget.mdc` Related
+**Package:** [`packages/token-workflow`](../../packages/token-workflow)  
+**Invoke:** `/token-workflow <ticket-id>` or "plan token workflow for 12345"
 
 Artifacts per ticket:
 
@@ -308,16 +306,22 @@ Jason's Friday pattern (offload transcript → compact → retain skill context 
 | `token-efficiency-work-summary.md` | **This document** |
 | `token-check-2026-06-11.md` | Sample weekly health-check output |
 
-### Global Cursor config
+### cursor-doc-skills repo (`rules/` + `packages/`)
 
 | Path | Purpose |
 |---|---|
-| `~/.cursor/rules/token-budget.mdc` | Always-applied discipline |
-| `~/.cursor/skills/token-check/SKILL.md` | Weekly health check |
-| `~/.cursor/skills/token-workflow/SKILL.md` | Multi-thread ticket planner |
-| `~/.cursor/skills/token-workflow/workflow-template.md` | Blank workflow skeleton |
-| `~/.cursor/skills/token-workflow/example-1462314.md` | Reference workflow |
-| `~/.cursor/bot/token-history/` | Weekly JSON snapshots |
+| `rules/token-budget.mdc` | Always-applied discipline (install to `~/.cursor/rules/`) |
+| `packages/token-check/` | Weekly health check + `config.example.json` |
+| `packages/token-workflow/` | Multi-thread ticket planner + template + example |
+
+### Global Cursor config (after install)
+
+| Path | Purpose |
+|---|---|
+| `~/.cursor/rules/token-budget.mdc` | Always-applied discipline (copy from repo `rules/`) |
+| `~/.cursor/skills/token-check/` | Weekly health check skill |
+| `~/.cursor/skills/token-workflow/` | Multi-thread ticket planner |
+| `~/.cursor/bot/token-history/` | Weekly JSON snapshots (created at runtime) |
 | `~/.cursor/skills/diary/SKILL.md` | Hybrid worklog model |
 | `~/.cursor/skills/close/SKILL.md` | Worklog rollup |
 | `~/.cursor/skills/ado-doc/SKILL.md` | Step 1b worklog |

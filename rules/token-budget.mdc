@@ -1,0 +1,50 @@
+---
+description: >-
+  Token-budget discipline. Nudge toward cheaper models and shorter threads
+  ahead of usage-based (token) pricing.
+alwaysApply: false
+---
+
+# Token Budget Discipline
+
+Usage-based (token) pricing rewards **short threads**, **small contexts**, and **cheaper models for routine work**. The headline from typical Agent-mode usage: **most tokens are cache-reads** — the model re-reading the same conversation turn after turn. That's the lever.
+
+Companion docs ship in [cursor-doc-skills `docs/token-efficiency/`](https://github.com/lesliedove/cursor-doc-skills/tree/main/docs/token-efficiency) — start with the [Token Action Card](https://github.com/lesliedove/cursor-doc-skills/blob/main/docs/token-efficiency/token-action-card.md).
+
+**Install note:** Copy this file to `%USERPROFILE%\.cursor\rules\token-budget.mdc` and set `alwaysApply: true` in the front matter when you want ambient nudges on every chat.
+
+## Always do these
+
+1. **Suggest saving and closing threads when a task wraps.** When the user signals completion ("looks good," "ship it," "that's done," "perfect," "got it") and there's no obvious continuation, suggest **`/diary` once** (write mode) — then they can close the tab. Remind them *why*: each new question on this thread re-pays the cache-read tax on the entire prior conversation. Phrase it like: "Want to `/diary` and close this tab? Anything else today will pay extra tokens to cache-read this whole thread otherwise — fresh thread is cheaper." Say it once per task wrap, not every message.
+
+2. **Avoid loading whole files** when a targeted grep or function-level read would do. If a file is large (>500 lines), grep first, then read only the matching slice.
+
+3. **Don't propose thinking-variant models** unless the task involves genuine reasoning (debugging, architecture, ambiguous root-cause work). For routine work — formatting, file moves, mechanical commits, release-list drafting from raw data — stay silent on model choice unless asked.
+
+4. **Call out model mismatches once.** If the user is on a thinking Opus variant and asks for clearly mechanical work, say once near the start: "this is mechanical — `composer-2.5` or `gemini-2.5-flash` would be much cheaper if you want to switch." Don't repeat in the same thread.
+
+5. **When delegating to sub-agents** (the `Task` tool), prefer `composer-2.5` for read/summarize/format/write tasks. Reserve Opus variants for sub-agents doing real reasoning. Pass an explicit `model` parameter when the parent is on Opus and the sub-task is routine.
+
+6. **At ~50K tokens of cumulative context in a thread**, suggest splitting if the next task could stand on its own. Phrase it as: "this thread is getting long — every new question will pay extra tokens to cache-read ~50K+ tokens of context. Want to `/diary` and open a fresh thread?" Make the suggestion *once per thread* — never nag.
+
+7. **Don't `@-mention` files speculatively.** When the user hasn't named a file, don't pull in "context" files defensively.
+
+## Don't do these
+
+- **Do not auto-switch models** on the user's behalf.
+- **Do not refuse Opus** when they chose it — they may know the task is hard.
+- **Do not count tokens in every reply** or annotate every action with cost estimates.
+- **Do not suggest `/diary` mid-task** just because the thread is long. Restarting mid-task usually costs more than cache-read.
+- **Do not chain `/diary` then `/close`** if both write the same diary — one write is enough.
+
+## When to break these rules
+
+- **Active debugging or investigation**: keep the thread open even if it's long.
+- **Multi-branch doc work** where context is already loaded: same thread is correct.
+- **User explicitly asks for a thinking model**: do it without question.
+
+## Related
+
+- `token-workflow` skill — plan multi-phase ticket work into short threads with scratch handoffs
+- `token-check` skill — weekly token health check against your frozen baseline
+- `diary` skill — save-and-close-tab workflow between threads

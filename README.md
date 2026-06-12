@@ -2,7 +2,7 @@
 
 A catalog of [Cursor](https://cursor.com) skills built by **Leslie Poff**, Staff Engineer, ModelCenter and optiSLang Collaborative Services Team, for AI-driven documentation work on Ansys DITA, DocBook, and Developer-Portal API docs.
 
-Each subfolder in [`packages/`](packages) is a standalone Cursor skill you can drop into your own Cursor install. Pre-built zips for each package live in [`dist/`](dist) for one-click install.
+Each subfolder in [`packages/`](packages) is a standalone Cursor skill you can drop into your own Cursor install. Standalone **rules** (always-on agent guidance) live in [`rules/`](rules). Pre-built zips for each package live in [`dist/`](dist) for one-click install.
 
 For the full background on each project — problems solved, results, screenshots — see [`docs/AI for Documentation - Project Summaries.md`](docs/AI%20for%20Documentation%20-%20Project%20Summaries.md). The README is just a launcher.
 
@@ -30,7 +30,21 @@ Skills live in `%USERPROFILE%\.cursor\skills\<skill-name>\` on Windows, or `~/.c
 | [`help-bot-doc-testing`](packages/help-bot-doc-testing) | Test harness that queries multiple AI engines (ChatGPT, Perplexity, Claude, Gemini, Copilot) with product questions, scores their answers against a ground-truth corpus, and surfaces documentation gaps. | Teams who want to know whether AI search engines answer correctly about their product |
 | [`since-last-meeting`](packages/since-last-meeting) | Generic "what did I work on since the last meeting" prep skill. Configurable for any recurring meeting (sprint reviews, 1:1s, status meetings). Drops a one-pager in your Downloads folder before every cycle. | Anyone with a recurring meeting that needs a "what I've been up to" summary |
 | [`how-i-ai`](packages/how-i-ai) | Biweekly "How I AI" meeting prep skill — discovers new AI work since the last meeting, updates a master project list, and drops a prep doc in Downloads. Fires automatically on Fridays when "How I AI" is on Monday's calendar. | AI demo / show-and-tell meeting prep |
+| [`token-workflow`](packages/token-workflow) | Split multi-phase ticket work into short threads (`/token-workflow <id>`). Writes `workflow.md` + `worklog.md` in scratch; one chat per phase (TDD → fix → ship by default). Pairs with `/diary` between threads. | Parser/code fixes, non-trivial doc tickets, any work with token traps |
+| [`token-check`](packages/token-check) | Weekly token-usage health check (`/token-check`). Compares your Cursor team-usage CSV to a frozen baseline; volume-focused cache-read metrics. | Usage-based pricing prep; pair with [`rules/token-budget.mdc`](rules/token-budget.mdc) |
 | **llm-doc-converter** | Python-based converter that turns DITA, DocBook, HTML, PDF, or Word documentation into LLM-optimized Markdown with YAML front matter, TL;DR summaries, and question-oriented titles. Lives in its own repo: [`lesliedove/llm-doc-converter`](https://github.com/lesliedove/llm-doc-converter). | Building RAG corpora, feeding docs to AI assistants, AI accuracy testing |
+
+---
+
+## Cursor rules
+
+Rules are `.mdc` files that apply persistent guidance — globally or per workspace. Install them to `%USERPROFILE%\.cursor\rules\` (or drag into Cursor and say **"Add this as a global rule"**).
+
+| Rule | What it does | Best for |
+|------|--------------|----------|
+| [`token-budget.mdc`](rules/token-budget.mdc) | Ambient token discipline — close threads at task done, cheaper models for routine work, no whole-file reads, sub-agent routing | Anyone adopting the [`docs/token-efficiency/`](docs/token-efficiency/) habit stack before usage-based pricing |
+
+See [`rules/README.md`](rules/README.md) for install steps. Set `alwaysApply: true` in the front matter when you want the rule on every chat.
 
 ---
 
@@ -52,6 +66,7 @@ After Cursor confirms, start a new chat and the skill is available. No restart, 
 A few skills need a small config file or credential before first use:
 
 - **`since-last-meeting`** and **`how-i-ai`** — set your meeting name and standup name. Just say *"Configure since-last-meeting for me"* (or `how-i-ai`) in Cursor and the agent will walk you through it.
+- **`token-check`** — copy `config.example.json` to `config.json` and set your frozen baseline from a first usage analysis. Pair with [`rules/token-budget.mdc`](rules/token-budget.mdc) for ambient habit nudges.
 - **`ado-doc-workflow`** — requires `%USERPROFILE%\.env` with `ADO_Username` and `ADO_Password`, plus the bundled `lib\Ado-Auth.ps1` helper at `%USERPROFILE%\.cursor\lib\`. See [`packages/ado-doc-workflow/INSTALL.md`](packages/ado-doc-workflow/INSTALL.md) for details.
 - **`help-bot-doc-testing`** — needs API keys for the engines you want to test (see its `README.md`).
 - **`ansys-doc-guidelines`**, **`api-documentation`** — no config required; activate on file-type match.

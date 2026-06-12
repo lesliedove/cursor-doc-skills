@@ -1,0 +1,28 @@
+{
+  "_comment_downloads_dir": "Where you drop Cursor team-usage CSV exports. Defaults to your Downloads folder.",
+  "downloads_dir": "%USERPROFILE%\\Downloads",
+
+  "_comment_report_dir": "Where weekly token-check markdown reports are saved.",
+  "report_dir": "%USERPROFILE%\\Downloads\\How-I-AI",
+
+  "_comment_history_dir": "JSON snapshots for trend charts (one file per week). Created automatically.",
+  "history_dir": "%USERPROFILE%\\.cursor\\bot\\token-history",
+
+  "_comment_reference_docs_dir": "Folder containing token-budgeting-companion.md and token-action-card.md. Copy from cursor-doc-skills/docs/token-efficiency/ or point at your checkout.",
+  "reference_docs_dir": "%USERPROFILE%\\Downloads\\How-I-AI",
+
+  "_comment_baseline": "Frozen comparison point from your first usage analysis. Update only when you deliberately reset your baseline — not every week.",
+  "baseline": {
+    "window_label": "2026-05-01 → 2026-05-21 (example — replace with your window)",
+    "total_tokens_weekly_avg": 393000000,
+    "cache_read_weekly": 364286449,
+    "cache_read_per_event": 807276,
+    "cache_read_per_active_day": 72857290,
+    "cache_read_share_percent": 92.7,
+    "opus_share_percent": 99.5,
+    "composer_gemini_share_percent": 0.5
+  },
+
+  "_comment_check_day": "Optional. Day of week for a recurring reminder (0=Sunday … 6=Saturday). Leave unset if you run manually only.",
+  "check_day_of_week": 5
+}
