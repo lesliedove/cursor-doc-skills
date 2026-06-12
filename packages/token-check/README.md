@@ -47,7 +47,6 @@ notepad "$env:USERPROFILE\.cursor\skills\token-check\config.json"
 ```powershell
 $dest = "$env:USERPROFILE\Downloads\How-I-AI"
 New-Item -ItemType Directory -Path $dest -Force | Out-Null
-Copy-Item "C:\path\to\cursor-doc-skills\docs\token-efficiency\token-action-card.md" $dest
 Copy-Item "C:\path\to\cursor-doc-skills\docs\token-efficiency\token-budgeting-companion.md" $dest
 ```
 
@@ -69,7 +68,7 @@ Install [`rules/token-budget.mdc`](../../rules/token-budget.mdc) from the repo r
 
 ## Sample output
 
-See [samples/token-check-example.md](samples/token-check-example.md) — a real week showing 65% below baseline on cache-read volume after adopting the Action Card habits.
+See [samples/token-check-example.md](samples/token-check-example.md) — a real week showing 65% below baseline on cache-read volume after adopting the habit stack.
 
 ---
 
@@ -79,7 +78,7 @@ See [samples/token-check-example.md](samples/token-check-example.md) — a real 
 |----------|------|
 | **token-workflow** | Split multi-phase tickets so weekly volume actually drops |
 | **[`rules/token-budget.mdc`](../../rules/token-budget.mdc)** | Ambient coaching the check measures against |
-| **docs/token-efficiency/** | Action Card + companion — the *why* behind the habits |
+| **docs/token-efficiency/** | Companion + work summary — the *why* behind the habits |
 
 ---
 

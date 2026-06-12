@@ -8,10 +8,8 @@ Synopsys flipped GitHub Copilot to usage-based (token) pricing on **June 1, 2026
 
 | Doc | What it is | Read when… |
 |-----|------------|------------|
-| [**Token Action Card**](token-action-card.md) · [PDF](token-action-card.pdf) | One printable page — model picks, six habits, red flags | You want something to pin on the monitor |
 | [**Token Budgeting Companion**](token-budgeting-companion.md) | Full analysis with Leslie's CSV data, ranked strategies, sources | You want to understand *why* the habits matter |
 | [**Work Summary**](token-efficiency-work-summary.md) | How the habit stack fits together (skills, rules, worklog split, measurement) | You're presenting at How I AI or onboarding a teammate |
-| [**Sample weekly check**](token-check-2026-06-11.md) | Example output from `/token-check` after one week of new habits | You want to see what "good progress" looks like |
 
 ## The headline number
 
@@ -34,7 +32,7 @@ Each package has a `README.md` with config steps. **`token-check`** needs a one-
 |------|--------------|---------|
 | [**`token-budget.mdc`**](../rules/token-budget.mdc) | Ambient coaching — thread-close reminders, model routing, no speculative `@`-mentions | Copy to `%USERPROFILE%\.cursor\rules\` and set `alwaysApply: true` (see [rules/README.md](../rules/README.md)) |
 
-This is **Part 2** of the habit stack in the [Work Summary](token-efficiency-work-summary.md). The rule turns the Action Card into ambient coaching without re-explaining the 92.7% cache-read number every session.
+This is **Part 2** of the habit stack in the [Work Summary](token-efficiency-work-summary.md). The rule turns the companion habits into ambient coaching without re-explaining the 92.7% cache-read number every session.
 
 ## Origin
 

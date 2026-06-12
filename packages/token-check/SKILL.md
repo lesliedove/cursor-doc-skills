@@ -19,7 +19,7 @@ Copy `config.example.json` to `config.json` next to this `SKILL.md` and edit:
 
 - **`baseline`** — your frozen comparison numbers from a first usage analysis (see README).
 - **`downloads_dir`**, **`report_dir`**, **`history_dir`** — override only if your layout differs.
-- **`reference_docs_dir`** — where the Token Action Card and companion doc live on your machine.
+- **`reference_docs_dir`** — where the companion doc lives on your machine.
 
 See [README.md](README.md) for the full walkthrough.
 
@@ -88,7 +88,7 @@ For the current CSV's *most recent 7 days*:
 9. Any Max Mode events (should always be zero).
 10. Cache-read share — compute but **do not headline** (footnote only).
 
-If the CSV spans a clear pre/post boundary (e.g. after you adopted the Action Card), also compute a **post-change slice** with the same volume metrics.
+If the CSV spans a clear pre/post boundary (e.g. after you adopted the habit stack), also compute a **post-change slice** with the same volume metrics.
 
 ## How to compute
 
@@ -199,7 +199,7 @@ See [samples/token-check-example.md](samples/token-check-example.md) for a real 
 
 Discipline check, not a scolding. Wins first. Watch items framed as "try next week," not "you screwed up."
 
-**Cache-read reporting:** celebrate falling *volume*. Never imply failure because share stayed ~90%. Reference the Token Action Card in `reference_docs_dir` when suggesting habit changes.
+**Cache-read reporting:** celebrate falling *volume*. Never imply failure because share stayed ~90%. Reference the companion doc in `reference_docs_dir` when suggesting habit changes.
 
 ## Hard rule
 
@@ -210,4 +210,4 @@ Discipline check, not a scolding. Wins first. Watch items framed as "try next we
 - [`rules/token-budget.mdc`](../../rules/token-budget.mdc) — optional always-on rule this skill measures against
 - [config.example.json](config.example.json) — paths and baseline
 - `token-workflow` skill — multi-thread ticket planner
-- `docs/token-efficiency/` in cursor-doc-skills — companion docs and Action Card source
+- `docs/token-efficiency/` in cursor-doc-skills — companion docs and work summary

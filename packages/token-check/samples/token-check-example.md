@@ -1,6 +1,6 @@
 # Token Check — week ending 2026-06-11
 
-*Example report shape — anonymized from a real weekly check after adopting Action Card habits.*
+*Example report shape — anonymized from a real weekly check after adopting the habit stack.*
 
 ## Headline
 

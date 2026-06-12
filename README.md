@@ -6,7 +6,7 @@ Each subfolder in [`packages/`](packages) is a standalone Cursor skill you can d
 
 For the full background on each project — problems solved, results, screenshots — see [`docs/AI for Documentation - Project Summaries.md`](docs/AI%20for%20Documentation%20-%20Project%20Summaries.md). The README is just a launcher.
 
-**Token efficiency** (usage-based pricing prep, Action Card, habit stack): [`docs/token-efficiency/`](docs/token-efficiency/) — start with the [Action Card PDF](docs/token-efficiency/token-action-card.pdf).
+**Token efficiency** (usage-based pricing prep, habit stack): [`docs/token-efficiency/`](docs/token-efficiency/) — start with the [Token Budgeting Companion](docs/token-efficiency/token-budgeting-companion.md).
 
 ---
 

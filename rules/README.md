@@ -4,7 +4,7 @@
 
 Skills teach the agent *how to run a workflow*; rules teach it *how to behave* on every turn.
 
-Companion analysis for token efficiency: [`docs/token-efficiency/`](../docs/token-efficiency/) — start with the [Token Action Card PDF](../docs/token-efficiency/token-action-card.pdf).
+Companion analysis for token efficiency: [`docs/token-efficiency/`](../docs/token-efficiency/) — start with the [Token Budgeting Companion](../docs/token-efficiency/token-budgeting-companion.md).
 
 ---
 

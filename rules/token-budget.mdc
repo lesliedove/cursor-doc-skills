@@ -9,7 +9,7 @@ alwaysApply: false
 
 Usage-based (token) pricing rewards **short threads**, **small contexts**, and **cheaper models for routine work**. The headline from typical Agent-mode usage: **most tokens are cache-reads** — the model re-reading the same conversation turn after turn. That's the lever.
 
-Companion docs ship in [cursor-doc-skills `docs/token-efficiency/`](https://github.com/lesliedove/cursor-doc-skills/tree/main/docs/token-efficiency) — start with the [Token Action Card](https://github.com/lesliedove/cursor-doc-skills/blob/main/docs/token-efficiency/token-action-card.md).
+Companion docs ship in [cursor-doc-skills `docs/token-efficiency/`](https://github.com/lesliedove/cursor-doc-skills/tree/main/docs/token-efficiency) — start with the [Token Budgeting Companion](https://github.com/lesliedove/cursor-doc-skills/blob/main/docs/token-efficiency/token-budgeting-companion.md).
 
 **Install note:** Copy this file to `%USERPROFILE%\.cursor\rules\token-budget.mdc` and set `alwaysApply: true` in the front matter when you want ambient nudges on every chat.
 

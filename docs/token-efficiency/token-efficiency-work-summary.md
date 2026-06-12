@@ -2,7 +2,7 @@
 
 **Author:** Flo (with Leslie)  
 **Context:** Post–How I AI meeting with Jason Kaiser; GHCP at Synopsys flipped to usage-based pricing June 1, 2026 (users blocked within hours). Cursor is expected to follow.  
-**Companion docs in this folder:** [token-budgeting-companion.md](token-budgeting-companion.md), [token-action-card.md](token-action-card.md) ([PDF](token-action-card.pdf))
+**Companion docs in this folder:** [token-budgeting-companion.md](token-budgeting-companion.md)
 
 ---
 
@@ -289,7 +289,7 @@ Jason's Friday pattern (offload transcript → compact → retain skill context 
 |---|---|
 | Backfill `worklog.md` in remaining `C:\GitRepos\.scratch\` ticket folders | Batch job; use `composer-2.5` |
 | First `/token-check` | Fri 2026-06-12 — need fresh CSV from Cursor admin |
-| Token Action Card PDF | In this folder as `token-action-card.pdf` (formatted for print) |
+| Token Action Card PDF | Local copy in `Downloads/How-I-AI/` (not shipped in this repo) |
 | Jun 30 reminder decision | Extend daily nudges or Friday-only |
 | Optional 1462314 corpus spot-check | `opti_ug_avail_modules.xml` on next LLM rebuild |
 
@@ -302,9 +302,7 @@ Jason's Friday pattern (offload transcript → compact → retain skill context 
 | File | Purpose |
 |---|---|
 | `token-budgeting-companion.md` | Full analysis |
-| `token-action-card.md` / `token-action-card.pdf` | One-page habits (markdown + formatted PDF) |
 | `token-efficiency-work-summary.md` | **This document** |
-| `token-check-2026-06-11.md` | Sample weekly health-check output |
 
 ### cursor-doc-skills repo (`rules/` + `packages/`)
 

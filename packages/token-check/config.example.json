@@ -8,7 +8,7 @@
   "_comment_history_dir": "JSON snapshots for trend charts (one file per week). Created automatically.",
   "history_dir": "%USERPROFILE%\\.cursor\\bot\\token-history",
 
-  "_comment_reference_docs_dir": "Folder containing token-budgeting-companion.md and token-action-card.md. Copy from cursor-doc-skills/docs/token-efficiency/ or point at your checkout.",
+  "_comment_reference_docs_dir": "Folder containing token-budgeting-companion.md. Copy from cursor-doc-skills/docs/token-efficiency/ or point at your checkout.",
   "reference_docs_dir": "%USERPROFILE%\\Downloads\\How-I-AI",
 
   "_comment_baseline": "Frozen comparison point from your first usage analysis. Update only when you deliberately reset your baseline — not every week.",
