@@ -31,10 +31,14 @@ The skills authenticate to ADO using a small PowerShell helper bundled at `lib\A
    The username must already include the `ANSYS\` domain prefix for
    NTLM. Lock the file down (`icacls %USERPROFILE%\.env /inheritance:r /grant:r "%USERNAME%:F"`).
 
-3. (Strongly recommended) Copy `rules\no-credentials-on-cmdline.mdc` to
-   `%USERPROFILE%\.cursor\rules\no-credentials-on-cmdline.mdc`. This
-   rule keeps any other agents on your host from regressing to the
-   `curl.exe -u` pattern.
+3. (Strongly recommended) Copy `rules\no-credentials-on-cmdline.mdc` from
+   this bundle to `%USERPROFILE%\.cursor\rules\no-credentials-on-cmdline.mdc`.
+   This rule keeps agents from regressing to the `curl.exe -u` pattern.
+
+   Optional shared rules from the repo [`rules/`](../../rules/) folder:
+   `edit-discipline.mdc`, `no-policy-override.mdc`, and (if your team
+   does not use ADO tags) `no-ticket-tags.mdc`. See
+   [`rules/README.md`](../../rules/README.md).
 
 Quick smoke test (PowerShell):
 

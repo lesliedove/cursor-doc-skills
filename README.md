@@ -38,13 +38,18 @@ Skills live in `%USERPROFILE%\.cursor\skills\<skill-name>\` on Windows, or `~/.c
 
 ## Cursor rules
 
-Rules are `.mdc` files that apply persistent guidance — globally or per workspace. Install them to `%USERPROFILE%\.cursor\rules\` (or drag into Cursor and say **"Add this as a global rule"**).
+Rules are `.mdc` files that apply persistent guidance — globally or per workspace. Install them to `%USERPROFILE%\.cursor\rules\` (or drag into Cursor and say **"Add this as a global rule"**). See [`rules/README.md`](rules/README.md) for install steps and suggested bundles.
 
 | Rule | What it does | Best for |
 |------|--------------|----------|
-| [`token-budget.mdc`](rules/token-budget.mdc) | Ambient token discipline — close threads at task done, cheaper models for routine work, no whole-file reads, sub-agent routing | Anyone adopting the [`docs/token-efficiency/`](docs/token-efficiency/) habit stack before usage-based pricing |
+| [`token-budget.mdc`](rules/token-budget.mdc) | Ambient token discipline — close threads at task done, cheaper models for routine work, no whole-file reads | [`token-workflow`](packages/token-workflow), [`token-check`](packages/token-check) |
+| [`edit-discipline.mdc`](rules/edit-discipline.mdc) | Minimum surgical edits with verifiable success criteria | [`ansys-doc-guidelines`](packages/ansys-doc-guidelines), [`api-documentation`](packages/api-documentation), [`ado-doc-workflow`](packages/ado-doc-workflow) |
+| [`no-policy-override.mdc`](rules/no-policy-override.mdc) | Never bypass PR/branch policies | [`ado-doc-workflow`](packages/ado-doc-workflow) |
+| [`no-ticket-tags.mdc`](rules/no-ticket-tags.mdc) | Omit ADO tags unless your team uses them (optional) | [`ado-doc-workflow`](packages/ado-doc-workflow) |
 
-See [`rules/README.md`](rules/README.md) for install steps. Set `alwaysApply: true` in the front matter when you want the rule on every chat.
+The `ado-doc-workflow` zip also includes a package-local credential-safety rule (`packages/ado-doc-workflow/rules/no-credentials-on-cmdline.mdc`) for teams using `Ado-Auth.ps1`.
+
+Set `alwaysApply: true` in the front matter when you want a rule on every chat.
 
 ---
 

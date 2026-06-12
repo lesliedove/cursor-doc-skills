@@ -1,0 +1,128 @@
+---
+description: >-
+  Think before editing, keep changes minimal and surgical, and define
+  verifiable success criteria. Applies to code, documentation, scripts,
+  config, ADO work items — any authored content.
+alwaysApply: false
+---
+
+# Edit Discipline: Think → Minimum → Surgical → Verify
+
+Behavioral guidelines to reduce common mistakes when editing anything — code,
+DITA, DocBook, Markdown, scripts, ADO work items, anything authored.
+
+**Tradeoff:** These guidelines bias toward caution over speed. For trivial
+edits (one-line typos the user has already pointed at, etc.), use judgment.
+
+**Install note:** Copy to `%USERPROFILE%\.cursor\rules\edit-discipline.mdc`. Set `alwaysApply: true` when you want this on every chat; pair with [`ansys-doc-guidelines`](../packages/ansys-doc-guidelines) and [`api-documentation`](../packages/api-documentation).
+
+## 1. Think Before Editing
+
+**Don't assume. Don't hide confusion. Surface tradeoffs.**
+
+Before making changes:
+
+- State your assumptions explicitly. If uncertain, ask.
+- If multiple interpretations exist, present them — don't pick silently.
+- If a simpler approach exists, say so. Push back when warranted.
+- If something is unclear, stop. Name what's confusing. Ask.
+
+Doc-specific examples of "stop and ask":
+
+- "Add a note about X" → which book? which section? which release branch(es)?
+- A ticket says "fix the typo" but you find two candidates → confirm which one.
+- A reviewer comment is ambiguous about scope → ask, don't guess.
+- A repo has both a DITA and a DocBook version of the same content → confirm which one (or both) is in scope.
+
+## 2. Simplicity First (not Simplicity Only)
+
+**Minimum change that solves the problem. Nothing speculative — but *offer* when you see something genuinely better.**
+
+For code:
+
+- No features beyond what was asked.
+- No abstractions for single-use code.
+- No "flexibility" or "configurability" that wasn't requested.
+- No error handling for impossible scenarios.
+- If you write 200 lines and it could be 50, rewrite it.
+
+For documentation:
+
+- No new sections, headings, admonitions, or cross-references that weren't asked for.
+- No "while we're in here" expansions of an unrelated paragraph.
+- No restructuring of a page to make the change "fit better".
+- No new screenshots when the existing one still works.
+- No reflow of bullet lists, table column widths, or section ordering that wasn't requested.
+
+### When to speak up (Simplicity First, not Simplicity Only)
+
+The rule is "minimum *silent* change." It is NOT "never suggest improvements."
+
+If, while doing what the user asked, you spot something that would meaningfully
+improve the overall product — a related section that's now wrong, a missing
+cross-reference, a clearly stale screenshot, a code path about to break for
+the same reason — **say so**. Then wait.
+
+The pattern is:
+
+1. Deliver the minimum change the user asked for.
+2. Surface the additional opportunity briefly: "While I was in there, I noticed X. Want me to also do Y?"
+3. Wait for a yes/no. Don't bundle it into the current diff.
+
+## 3. Surgical Changes
+
+**Touch only what you must. Clean up only your own mess.**
+
+When editing existing content:
+
+- Don't "improve" adjacent paragraphs, comments, or formatting.
+- Don't refactor things that aren't broken — including XML structure, list nesting, or section ordering.
+- Match existing style and voice, even if you'd do it differently.
+- If you notice unrelated dead content (orphan topics, stale screenshots, broken xrefs in other sections), mention it — don't delete it.
+
+For DITA / DocBook specifically:
+
+- Don't change `<topic>` or `<chapter>` ordering "just because."
+- Don't rename `id` attributes — they're cross-reference targets and may be linked from other books or external systems.
+- Don't reformat XML indentation across a whole file.
+- Don't "fix" entity references (`&MC;`, `&oSL;`, `&AnsysVersion;`) to literal strings — entities are deliberate.
+- Don't normalize attribute order, quote style, or whitespace inside elements you aren't touching.
+
+When your changes create orphans:
+
+- Remove imports/variables/functions/`topicref`s/`xref`s that YOUR changes made unused.
+- Don't remove pre-existing dead content unless asked.
+
+The test: every changed line should trace directly to the user's request (or
+to the ticket the user asked you to work).
+
+## 4. Goal-Driven Execution
+
+**Define success criteria. Loop until verified.**
+
+Transform tasks into verifiable goals:
+
+- "Add validation" → "Write tests for invalid inputs, then make them pass"
+- "Fix the bug" → "Write a test that reproduces it, then make it pass"
+- "Refactor X" → "Ensure tests pass before and after"
+
+For documentation:
+
+- "Update the install guide" → "Section X reads Y; book builds clean; cross-refs resolve; screenshots render at the right size."
+- "Add the new feature to the user guide" → "New topic exists; linked from the right `topicref`/`xi:include`; appears in the TOC; preview build succeeds."
+- "Apply this to multiple release branches" → "Same diff lands cleanly on each branch; each branch's preview build is clean."
+- "Pick up ticket NNNN" → "Edits match the ticket's acceptance criteria; ticket linked to PR; PR description references the ticket."
+
+For multi-step tasks, state a brief plan up front:
+
+```
+1. [Step] → verify: [check]
+2. [Step] → verify: [check]
+3. [Step] → verify: [check]
+```
+
+## Related
+
+- [`ansys-doc-guidelines`](../packages/ansys-doc-guidelines) — corporate DITA/DocBook style
+- [`api-documentation`](../packages/api-documentation) — Dev Portal API style
+- [`ado-doc-workflow`](../packages/ado-doc-workflow) — ticket-driven doc edits

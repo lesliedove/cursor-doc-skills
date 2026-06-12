@@ -1,0 +1,37 @@
+---
+description: Do not set Tags on ADO work items unless the user explicitly requests it.
+alwaysApply: false
+---
+
+# No Tags on ADO Work Items (default)
+
+When creating a new Azure DevOps work item (Task, Bug, User Story, Feature, etc.) **or editing an existing one**, do **NOT** set the `System.Tags` field **unless the user explicitly asks for tags**.
+
+Many doc teams do not use ADO tags as a workflow signal. Agent-generated tags add noise to boards and saved queries. This rule keeps the field empty by default.
+
+**If your team uses tags:** delete this rule, set `alwaysApply: false`, or edit it to match your team's convention.
+
+**Install note:** Copy to `%USERPROFILE%\.cursor\rules\no-ticket-tags.mdc`. Optional with [`ado-doc-workflow`](../packages/ado-doc-workflow).
+
+This applies regardless of which interface you're using:
+
+- REST API patch documents (`POST /_apis/wit/workitems/$Task` or `PATCH /_apis/wit/workitems/{id}`) — omit any `op` for `/fields/System.Tags`.
+- `az boards work-item create` / `az boards work-item update` — do **not** pass `--tags`.
+- Any script that builds a JSON-patch body — leave tags off unless instructed.
+
+## What you MAY do
+
+- Read the `System.Tags` field when querying or summarizing existing work items.
+- Preserve tags that are already on a ticket — do not touch the field on edits, even to clean it up, unless the user explicitly asks.
+
+## What you MUST NOT do
+
+- Add `System.Tags` to a JSON-patch body on create.
+- Replace or append to `System.Tags` on update.
+- Pass `--tags "..."` to `az boards work-item create` or `az boards work-item update`.
+
+If you think tagging is the right answer for something the user asked for, **stop and ask first**.
+
+## Related
+
+- [`ado-doc-workflow`](../packages/ado-doc-workflow) — work item create/update during doc tickets

@@ -1,0 +1,55 @@
+---
+description: Hard rule — never override, bypass, or suggest overriding a blocking PR/branch policy (build, required reviewer, work item link, etc.).
+alwaysApply: false
+---
+
+# Never Override Branch / PR Policies
+
+**Hard rule. No exceptions.**
+
+Do NOT bypass, override, or **suggest** bypassing a blocking branch policy on any PR. This includes — but is not limited to:
+
+- **Build validation policies** (Docbook Pre-merge, DITA Pre-merge, any CI gate)
+- **Required reviewer policies** (per-team, per-path, automatic reviewers)
+- **Minimum number of reviewers**
+- **Work item linking**
+- **Comment resolution**
+- **Status check policies**
+
+These gates exist for a reason. Branch policies are tuned by humans who know what risks they prevent. An agent is **not** the right party to decide a policy can be skipped — even when the underlying check failed for a clearly unrelated reason (disk full, agent offline, transient network).
+
+**Install note:** Copy to `%USERPROFILE%\.cursor\rules\no-policy-override.mdc`. Pair with [`ado-doc-workflow`](../packages/ado-doc-workflow). Set `alwaysApply: true` for hard enforcement.
+
+## What you MUST NOT do
+
+- Call any `/_apis/policy/evaluations/{id}` PATCH/POST that would set a status to `approved` without the underlying check actually passing.
+- Suggest the user click "Override branch policies" or any equivalent UI affordance.
+- Suggest the user uncheck "Require a successful build" or relax a required reviewer.
+- Suggest the user merge a PR via "Bypass policies and complete" or the `bypassPolicy` flag.
+- Use `completionOptions.bypassPolicy` (or `bypassReason`) in any PR PATCH body.
+- Recommend disabling a policy "just for this PR".
+- Recommend an admin override workaround ("ask an admin to bypass it for you").
+
+## What you MAY do when a policy is blocking a merge
+
+When a policy is `rejected` or `failed` for a reason unrelated to the PR content (e.g., disk-full agent, network blip, dead reviewer), the answer is **always** to satisfy the policy properly:
+
+1. **Wait and see** — many policies re-evaluate automatically when the underlying failure clears. Auto-retry builds frequently succeed on their own. Don't act prematurely.
+2. **Re-queue the failed build** — but only with explicit per-definition consent from the user. Re-queueing makes the policy pass legitimately.
+3. **Push a no-op/empty commit** to the source branch to force a fresh evaluation cycle. Note: this triggers a new build, which itself needs the same per-definition consent.
+4. **Add the missing reviewer / link / comment resolution** — whatever the policy was actually checking for.
+5. **Report and stop** — if none of the above applies, surface the situation clearly ("PR is stuck on policy X because Y; here are the legitimate paths forward") and let the user decide. Do NOT include "override the policy" as one of the options.
+
+## How to phrase a stuck-PR report
+
+Good:
+
+> PR 690887 is blocked by a stale `rejected` Build policy from a disk-full first attempt (build 12403040). The retry (12403041) passed and added an `approved` evaluation, but ADO still sees the older `rejected` entry. To unblock legitimately: (1) wait — many auto-retries clear themselves, or (2) re-queue build 12403040 (needs your explicit OK first).
+
+Bad (do not do this):
+
+> PR 690887 is blocked. You can re-queue the build, or you can manually override the Build policy in the PR UI — click the "..." next to the failed check and pick "Override".
+
+## Related
+
+- [`ado-doc-workflow`](../packages/ado-doc-workflow) — PR creation and auto-complete (legitimate; does not override anything)
