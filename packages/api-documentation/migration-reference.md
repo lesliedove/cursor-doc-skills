@@ -8,9 +8,10 @@ This file covers migration workflows and format conversions for getting document
 
 ### Step 1: Prepare the documentation package
 
-1. Classify the package type (REST API, API prose, or Library/SDK).
-2. Confirm required files against the requirements matrix in section 2.
-3. Organize content in Markdown with required metadata and navigation files.
+1. Classify the package type (REST API, API prose, or Library/SDK) — one primary type per folder.
+2. Place the package at `docs/<product>/<doc-package>/versions/<YYYY.RX.SPXX>/` (e.g. `2026.R1.SP02`). Do not use legacy roots like `2026R1/`.
+3. Confirm required files against the requirements matrix in section 2.
+4. Organize content in Markdown with required metadata and navigation files.
 
 ### Step 2: Set up GitHub access
 
@@ -36,14 +37,23 @@ PR requirements:
 
 Melanie approves all PRs.
 
+**Should have** — one documentation package (one version folder) per PR; do not mix unrelated packages.
+
+### DevRelDocs team workflow (post-reorg)
+
+1. Push and merge to the **`accept`** branch first.
+2. Wait for automated migration; validate in sandbox.
+3. If sandbox passes, promote the same change to **`main`**.
+4. Release-safe pattern: land docs unpublished on `main`; on release day, metadata-only PR to set `status: published`.
+
 ### Step 4: Review in sandbox
 
 After submission, the Dev portal team deploys to a sandbox and provides a preview link.
 
-1. Open Chrome, navigate to `https://ansys-a.devportal.io/user/login`.
-2. Sign in with provided credentials.
-3. When prompted with a second login page, navigate the site as an anonymous user instead.
-4. Review for: missing content, formatting issues, broken links.
+1. Open the Synopsys developer sandbox (e.g. `https://developer-a.synopsys.com/`).
+2. Sign in with provided credentials when required.
+3. When prompted with a second login page, browse as an anonymous user with the preview link instead.
+4. Review for: missing content, formatting issues, broken links, TOC/navigation, metadata, images.
 
 ### Step 5: Approve final migration
 
@@ -59,11 +69,11 @@ Upload documentation at least 3-4 days before release date. Ideal lead time: 10 
 
 | Package type | Authoritative reference | Required root files | Descriptive files | Changelog | `toc.yml` | Metadata source | Primary guide |
 |---|---|---|---|---|---|---|---|
-| **REST API** | OpenAPI/Swagger spec | `docfx.json` + spec file | `description/index.md` | `changelog/changelog.md` | No | Split: `docfx.json` + OpenAPI `info` | HTTP API doc management |
-| **API (prose)** | Markdown prose | `index.md`, `changelog.md`, `docfx.json` | `index.md` | `changelog.md` | Yes | `docfx.json` `build.globalMetadata` | Markdown doc management |
-| **Library/SDK** | Markdown (generated or authored) | `index.md`, `changelog.md`, `docfx.json` | Intro, getting started, user guide, examples | `changelog.md` | Yes | `docfx.json` `build.globalMetadata` | Markdown or Doxygen doc management |
+| **REST API** | OpenAPI/Swagger spec | `docfx.json` + spec file | `description/index.md` | `changelog/changelog.md` | No | Split: `docfx.json` + OpenAPI `info` | REST API (OpenAPI) doc management |
+| **API (prose)** | Markdown prose | `index.md`, `docfx.json` | `index.md` | `changelog.md` or `changelog/changelog.md` | Yes | `docfx.json` `build.globalMetadata` | Markdown doc management |
+| **Library/SDK** | Markdown (generated or authored) | `index.md`, `docfx.json` | Intro, getting started, user guide, examples | `changelog.md` or `changelog/changelog.md` | Yes | `docfx.json` `build.globalMetadata` | Markdown or Doxygen doc management |
 
-Do not submit a hybrid package combining REST API and Library/SDK.
+**One primary type per package folder.** **Must not** combine REST API (OpenAPI at root) and Library/SDK in one migration package. **May** combine Library/SDK with API (prose) in the same Markdown tree. Never label a package **HTTP API** — use REST API or API (prose).
 
 ---
 
@@ -76,7 +86,7 @@ Do not submit a hybrid package combining REST API and Library/SDK.
 - `toc.yml` — navigation definition.
 - `docfx.json` — metadata.
 - `index.md` — landing page.
-- `changelog.md` — release history.
+- `changelog.md` or `changelog/changelog.md` — release history.
 
 **REST API-only packages:**
 
@@ -127,7 +137,7 @@ Documentation-package/
       href: get-started/prerequisites.md
 ```
 
-- Wrap `name` in double quotes if it contains `::` or `~`.
+- `name` is optional (defaults to file title metadata or first H1). Wrap in double quotes if it contains `::`, `~`, `#`, or `{}`.
 - No duplicate `href` values.
 - Exactly one `toc.yml` per package tree.
 

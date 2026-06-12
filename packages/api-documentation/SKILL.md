@@ -11,12 +11,15 @@ description: >-
 
 ## Source of truth
 
-The canonical rubric is **`.github/AGENTS.md`** in [ansys/DevRelDocs](https://github.com/ansys/DevRelDocs). When that file disagrees with anything below, **AGENTS.md wins**. Before doing a real compliance review, fetch the latest copy:
+Authoritative requirements flow from Melanie Guyot's team guidelines through publication into DevRelDocs:
 
-- Local clone (if available): `<DevRelDocs>/.github/AGENTS.md`
-- Published guidelines site: `https://doc-guidelines.sandbox.ansysapis.com/docs/`
+1. **Upstream (authoring source):** [ansys-internal/developer-documentation-guidelines](https://github.com/ansys-internal/developer-documentation-guidelines) — Hugo source for `content/docs/` (package types, metadata, migration, compliance checklist). Local clone: `<your-clone>/developer-documentation-guidelines`.
+2. **Published site:** `https://doc-guidelines.sandbox.ansysapis.com/docs/` — rendered from that repo; use this URL for **Reference** lines in compliance reports.
+3. **Dev portal rubric:** **`.github/AGENTS.md`** in [ansys/DevRelDocs](https://github.com/ansys/DevRelDocs) — agent compliance checklist synced to the published site. When AGENTS.md or the sandbox site disagrees with anything below, **those win**.
 
-Use the sandbox guidelines URL (not GitHub repo links) for **Reference** lines in any compliance report. AGENTS.md tracks the published site, including its tagged **Must have / Should have / Nice to have** requirements.
+Before a real compliance review, fetch the latest AGENTS.md and spot-check the sandbox site for tagged **Must have / Should have / Nice to have** requirements.
+
+Use the sandbox URL (not GitHub repo links) for **Reference** lines in any compliance report — including links to `developer-documentation-guidelines`.
 
 ## Compliance reports
 
@@ -47,7 +50,9 @@ Before applying any rules, classify the documentation package by which type(s) a
 | **API (prose)** | Markdown prose | Wire protocol or message-based API documented in Markdown, not OpenAPI |
 | **Library/SDK** | Markdown (possibly generated from Doxygen/Sphinx/proto) | Language-specific interface with classes, methods, functions |
 
-**Hybrid packages** are allowed: a single package may document a wire API (REST API or API) **and** a client Library/SDK. When hybrid, apply every checklist that matches a delivered surface.
+**One primary type per package folder** under `docs/<product>/<doc-package>/versions/<version>/`. **Must not** combine **REST API** (OpenAPI at root) and **Library/SDK** in a single migration package—ship separate folders or PRs. **May** combine **Library/SDK** with **API (prose)** in the same Markdown tree when the wire API has no OpenAPI spec. When multiple surfaces apply, use the union of applicable checklists.
+
+**Package naming:** Never label a package **HTTP API**—use **REST API** (OpenAPI authoritative) or **API (prose)** (wire protocol in Markdown). Do not use **API** and **library** interchangeably (APIs are protocol-based; libraries are language-specific and require install).
 
 ## 2. Required files by type
 
@@ -65,25 +70,27 @@ REST API packages: only `docfx.json` and the OpenAPI spec at root. Descriptive c
 
 Follow the [Google developer documentation style guide](https://developers.google.com/style).
 
-- Use sentence case for all headings and titles.
-- Use active voice and present tense.
-- Keep sentences short and clear.
-- Use consistent terminology throughout. Do not alternate between synonyms.
-- Validate with Vale (Google style rules) and Markdownlint.
+- **Must have** — Sentence case for all headings and titles.
+- **Must have** — Active voice and present tense.
+- **Must have** — Short, clear sentences and consistent technical terminology (no synonym swapping).
+- **Must have** — Vale (Google style + Ansys vocab) and Markdownlint pass before PR submission.
 
 ## 4. Markdown rules
 
-Format: GitHub Flavored Markdown. Encoding: UTF-8.
+Format: GitHub Flavored Markdown. Encoding: UTF-8 only (not Windows-1252). Do not rely on unsupported Docfx Markdown extensions.
 
-- File names: lowercase with hyphens (`getting-started.md`, not `Getting_Started.md`).
+- **Must have** — One H1 per Markdown file (first heading after frontmatter), except REST `description/index.md` and `changelog/changelog.md` (H2-first, no H1).
+- **Must have** — When formulas are used, valid LaTeX (`$$...$$` block, `$...$` inline); invalid or mixed delimiters = **Must fix**.
+- File names: lowercase with hyphens (`getting-started.md`, not `Getting_Started.md`). Paths become public URLs—keep them short.
 - Image file extensions: always lowercase (`.png`, `.jpg`).
+- **Should have** — Informative images have descriptive alt text; empty alt (`![](path)`) only for decorative images.
 - Code blocks: always specify language for syntax highlighting.
 - Ordered lists with embedded code or images: indent by 4 spaces with a blank line above.
-- Block formulas: `$$...$$`. Inline formulas: `$...$` (LaTeX syntax).
 - Links opening in new tabs: use `<a target="_blank" href="...">`.
 - Collapsible sections: use `<details>` and `<summary>` tags.
 - Tables with merged cells or bulleted lists in cells: use HTML.
 - Hidden comments: `<!-- comment -->`.
+- When Markdown lacks a construct, inline HTML is permitted (prefer Markdown first).
 
 ## 5. Metadata (`docfx.json`)
 
@@ -105,6 +112,8 @@ All metadata keys must be lowercase.
   }
 }
 ```
+
+**Must have** — `title` is product + version only; omit redundant words like "documentation" or "guide". **Should have** — include valid `product` (see `product.yml`). Validate every taxonomy field in use against `config/portal-metadata/*.yml`.
 
 **REST API packages** (metadata split between `docfx.json` and OpenAPI `info`):
 
@@ -136,40 +145,57 @@ Title and version come from the OpenAPI `info` object for REST API packages.
 
 ## 6. API reference quality
 
-### REST APIs
+### REST APIs (descriptive content in `description/index.md`)
+
+**Must have** — H2 sections: Introduction, Resources, Authenticate, Send API requests, Responses. Auth section must state method types (API key, token, or bearer).
+
+**Should have** — Introduction covers testing environment (Dev portal testability, alternatives, production URLs). curl and Postman examples; response table, format, and pagination when applicable.
+
+### REST APIs (OpenAPI reference)
 
 - OpenAPI spec must validate in Swagger Editor without errors.
-- `info.description`: one-sentence summary.
-- Group endpoints by category using `tags`.
-- Each endpoint needs: `summary` (sentence case, no trailing period), `description`, `parameters`, `responses`, and working examples.
-- Request/response examples must use realistic, specific values. Never use generic `"string"` placeholders.
+- `info.description`: one-sentence summary (**Should have**).
+- Group endpoints by category using `tags` with tag descriptions (**Should have**).
+- **Must have** — `summary` sentence case, no trailing period.
+- **Should have** — `description`, parameter descriptions, all responses, concise response-object descriptions, and realistic request/response examples (never generic `"string"` placeholders).
 
 ### gRPC APIs
 
 - Generate docs from proto files using `protoc-gen-doc`.
 - Follow the [Protocol Buffers Style Guide](https://protobuf.dev/programming-guides/style/).
-- Comment every message, service, field, and enum value.
+- **Should have** — file-level description; group related definitions; leading/trailing comments; capitalize comments and end with period.
+- Comment every message, service, field, and enum value. Use `@exclude` to omit internal-only comments from generated docs.
 - PascalCase for messages/enums/services; `lower_snake_case` for fields.
-- Enum zero value: suffix with `UNSPECIFIED`.
+- Enum zero value: suffix with `UNSPECIFIED`. Enum values end with semicolon.
 - Prefix enum values with the enum name to avoid collisions.
-- Use Markdown syntax in proto comments.
+- Use Markdown syntax in proto comments. Formulas in comments: valid LaTeX only.
 
-### Other APIs
+### API (prose)
 
+- **Must have** — Root `index.md` with Introduction; changelog at `changelog.md` or `changelog/changelog.md`.
+- **Do not** require Resources, Authenticate, Send API requests, or Responses—that is REST-only.
+- **Should have** — Introduction covers capabilities, protocol, and testing environment.
+
+### Other APIs (non-REST, non-gRPC wire protocols)
+
+- **Must have** — Clearly define the specific protocol and data formats.
 - Document all messages in Markdown.
-- Define message formats, field types, and whether fields are mandatory.
+- **Should have** — Field descriptions including type and whether each field is mandatory.
 
 ## 7. Library/SDK documentation
 
-Required sections in descriptive content:
+Descriptive content severity tags:
 
-1. **Introduction** (`index.md`): purpose, features, target audience, language/OS support, library role (client/server/both).
-2. **Getting started**: dependencies, installation, dev environment config, licensing.
-3. **User guide**: how to use the library/SDK.
-4. **Usage examples**: comprehensive code examples, common use cases.
-5. **Changelog** (`changelog.md`): latest version at top, categorized as Added/Changed/Deprecated/Removed/Fixed.
+| Section | Priority |
+|---------|----------|
+| **Introduction** (`index.md`, H1 must be exactly `# Introduction`) | **Must have** |
+| **Changelog** (`changelog.md` or `changelog/changelog.md`) | **Must have** |
+| **Getting started** (dependencies, install, dev env, licensing) | **Should have** |
+| **User guide** | **Should have** |
+| **Usage examples** | **Should have** |
+| **Platform overview** (inside Introduction) | **Nice to have** |
 
-**Platform overview** (architecture diagram, integration explanation) is **Nice to have**, typically inside the introduction. Do not flag a missing platform overview as Must fix or Should fix.
+Introduction body **Should have** — main features, target audience, language/OS support, library role (client/server/both). Do not flag a missing platform overview as Must fix or Should fix.
 
 Reference documentation requirements:
 
@@ -243,7 +269,7 @@ REST API requirements:
       href: get-started/prerequisites.md
 ```
 
-- `name`: display name. Wrap in double quotes if it contains `::` or `~`.
+- `name`: display name (optional—defaults to file title metadata or first H1). Wrap in double quotes if it contains `::`, `~`, `#`, or `{}`.
 - `href`: path to the file. Optional for parent-only nodes.
 - `items`: child nodes.
 - No duplicate `href` values across the TOC.
@@ -258,15 +284,15 @@ REST API requirements:
 
 Migration to the Dev portal follows 5 steps:
 
-1. **Classify** the package type and confirm required files (see section 2).
-2. **Prepare** documentation in Markdown (convert from source format if needed).
-3. **Submit** a PR to the appropriate GitHub repo:
+1. **Classify** the package type (one primary type per folder) and confirm required files (see section 2).
+2. **Prepare** documentation in Markdown at `docs/<product>/<doc-package>/versions/<YYYY.RX.SPXX>/` (convert from source format if needed).
+3. **Submit** a PR to the appropriate GitHub repo (one package per PR when practical):
    - **DevRelDocs** for public documentation
    - **DevRelDocs_internal** for internal documentation
-4. **Review** in the sandbox environment (preview link provided by the Dev portal team).
-5. **Approve** final migration to production.
+4. **Review** in the sandbox environment — merge to `accept` first, validate, then promote to `main`.
+5. **Approve** explicit sign-off for production migration after sandbox validation.
 
-Upload documentation at least 3-4 days (ideally 10 days) before release date.
+Upload documentation at least 3-4 days (ideally 10 days) before release date. Engage Ansys documentation specialists for pre-migration review when available.
 
 For detailed migration workflows and format conversion instructions, read [migration-reference.md](migration-reference.md).
 
@@ -286,7 +312,7 @@ Before submitting a PR, verify:
 
 ### Compliance reports
 
-When asked for a compliance check, write findings to **`documentation-compliance-report.md`** in the package root. Include:
+When asked for a compliance check, write findings to **`documentation-compliance-report.md`** in the package root for local review only — **do not commit or push** that file to DevRelDocs. Include:
 
 - Title, ISO date, package path relative to repo root.
 - **Summary line**: Approved / Needs Minor Revisions / Needs Major Revisions (justified per severity rules below).
@@ -307,7 +333,7 @@ Approval line:
 
 - **Approved** — no open Must fix; no Should fix the reviewer treats as release-blocking.
 - **Needs Minor Revisions** — no Must fix; one or more Should fix or Nice to fix.
-- **Needs Major Revisions** — one or more Must fix.
+- **Needs Major Revisions** — one or more Must fix, or widespread Should-fix issues the reviewer treats as release-blocking.
 
 ## 13. PR process
 

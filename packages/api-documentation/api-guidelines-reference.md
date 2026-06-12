@@ -2,7 +2,7 @@
 
 This is the detailed reference for Ansys API, library, and SDK documentation. Read SKILL.md first for the essentials. Use this file when you need full details on writing guidelines, metadata configuration, or the compliance checklist.
 
-> **Source of truth.** The canonical rubric is `.github/AGENTS.md` in [ansys/DevRelDocs](https://github.com/ansys/DevRelDocs), backed by the published guidelines site at `https://doc-guidelines.sandbox.ansysapis.com/docs/`. When this file disagrees with AGENTS.md or the sandbox site, those win. Use the sandbox URL (not GitHub repo links) for **Reference** lines in any compliance report.
+> **Source of truth.** Requirements originate in [ansys-internal/developer-documentation-guidelines](https://github.com/ansys-internal/developer-documentation-guidelines) (Melanie Guyot's team; local clone `<your-clone>/developer-documentation-guidelines`), publish to `https://doc-guidelines.sandbox.ansysapis.com/docs/`, and sync into `.github/AGENTS.md` in [ansys/DevRelDocs](https://github.com/ansys/DevRelDocs). When this file disagrees with AGENTS.md or the sandbox site, those win. Use the sandbox URL (not GitHub repo links) for **Reference** lines in any compliance report.
 
 ---
 
@@ -32,6 +32,16 @@ Extends SDK concept to include pre-built modules for almost every interaction po
 
 - **API docs** describe language-agnostic, protocol-based interfaces (no installation required).
 - **Library docs** describe language-specific interfaces (installation required). Must mention supported languages, operating systems, and the library's role (server, client, or both).
+- Do **not** use **API** and **library** interchangeably — that deviates from industry norms and confuses readers.
+- **Framework** is an industry term only; Ansys does not ship framework packages on the Dev portal today.
+
+### Package type vs protocol labels
+
+- **REST API** package = OpenAPI/Swagger at root is authoritative.
+- **API (prose)** package = wire protocol and messages in Markdown (no OpenAPI as reference).
+- **Library/SDK** package = language-specific surface (classes, functions, samples).
+- Never label a migration package **HTTP API** — use **REST API** or **API (prose)**.
+- **Must not** combine **REST API** (OpenAPI) and **Library/SDK** in one migration folder. **May** combine Library/SDK with **API (prose)** in the same Markdown tree.
 
 ---
 
@@ -49,7 +59,7 @@ Follow the [Google developer documentation style guide](https://developers.googl
 
 ## 3. Markdown rules
 
-Format: GitHub Flavored Markdown (GFM). Encoding: UTF-8.
+Format: GitHub Flavored Markdown (GFM). Encoding: UTF-8 only (not Windows-1252). Do not rely on unsupported Docfx Markdown extensions. MathML only where the package already supports it; prefer LaTeX `$`/`$$`.
 
 - Block formulas: `$$...$$`. Inline formulas: `$...$` (LaTeX syntax).
 - Subscript/superscript: use LaTeX (`$H_{2}O$`, `$E=mc^{2}$`).
@@ -75,7 +85,7 @@ Classify before applying any guidelines:
 | **API (prose)** | Markdown prose | `index.md`, `changelog.md`, `toc.yml`, `docfx.json` at root |
 | **Library/SDK** | Markdown (possibly generated) | `index.md`, `changelog.md`, `toc.yml`, `docfx.json` at root |
 
-**Hybrid packages** (e.g., REST API + a client library, or API prose + a small utility library) are allowed. Apply every checklist that matches a delivered surface — `§3.4` for REST API, `§4` for Library/SDK, `§3.6` for non-HTTP/non-gRPC protocols, etc.
+Submit **one primary type per** `docs/<product>/<doc-package>/versions/<version>/` folder. **Must not** bundle OpenAPI REST API and Library/SDK in one package. Library/SDK **may** include **API (prose)** in the same Markdown tree. Apply every checklist that matches a delivered surface.
 
 ---
 
@@ -87,7 +97,7 @@ All keys must be lowercase.
 
 | Field | Description |
 |-------|-------------|
-| `title` | Documentation title + version (e.g. "DPF C++ client library 2026 R1") |
+| `title` | Documentation title + version (e.g. "DPF C++ client library 2026 R1"). **Must have** — omit redundant "documentation" or "guide" |
 | `version` | Format: `YYYY R1\|R2 [SP01-SP04]` |
 | `summary` | Brief description of the documentation (not the product) |
 | `physics` | Product collection category (see `physics.yml` under `config/portal-metadata/` on the active branch) |
@@ -151,7 +161,7 @@ All keys must be lowercase.
 
 | Field | Description |
 |-------|-------------|
-| `product` | Product category (recommended, becoming mandatory) |
+| `product` | **Must have** for REST API `docfx.json`; **Should have** for all Markdown packages (see `product.yml`) |
 | `status` | `published` or `unpublished` |
 | `access control` | Access level (default: public) |
 | `programming language` | Language terms |
@@ -170,12 +180,28 @@ File-level metadata uses YAML frontmatter. File-level values add to (not replace
 
 ### Descriptive content (Markdown)
 
-The primary descriptive file (`description/index.md` for REST API, `index.md` for API prose) must include:
+#### REST API (`description/index.md`)
+
+**Must have** — H2 sections: Introduction, Resources, Authenticate, Send API requests, Responses. Auth must state method types (API key, token, bearer).
+
+**Should have** per section:
+- Introduction — capabilities, protocol, **testing environment** (Dev portal testability, alternatives, production URLs).
+- Authenticate — key/token retrieval instructions.
+- Send API requests — curl and Postman examples.
+- Responses — response table, format (e.g. JSON), pagination when applicable.
+
+#### API (prose) (`index.md`)
+
+**Must have** — Introduction section. **Do not** require Resources, Authenticate, Send API requests, or Responses (REST-only).
+
+**Should have** — Introduction covers capabilities, protocol, and testing environment.
+
+#### Shared introduction topics
 
 1. **Introduction**
-   - Capabilities and features.
-   - Protocol definition.
-   - Testing environment info.
+   - Capabilities and features *(Should have)*.
+   - Protocol definition *(Should have)*.
+   - Testing environment info *(Should have)*.
 
 2. **Platform overview** *(Nice to have)*
    - Explanatory diagram (API relationships).
@@ -202,15 +228,16 @@ For **REST API** descriptive files, the section headings (`## Introduction`, `##
 
 ### File naming
 
-- **API (prose)**: landing page = `index.md`; changelog = `changelog.md`.
+- **API (prose)**: landing page = `index.md`; changelog = `changelog.md` or `changelog/changelog.md`.
+- **Library/SDK**: landing page = `index.md` with H1 exactly `# Introduction`; changelog = `changelog.md` or `changelog/changelog.md`.
 - **REST API-only**: `description/index.md` + `changelog/changelog.md`.
 
 ### API reference: REST
 
-- OpenAPI Specification (JSON or YAML).
-- Brief one-sentence description in `info.description`.
-- Group endpoints by category using `tags`.
-- Each endpoint needs: summary (sentence case, no period), description, parameters, responses, working examples.
+- OpenAPI Specification (JSON or YAML) — **Must have** — validates for migration.
+- **Should have** — one-sentence `info.description`; endpoints grouped with `tags` (+ tag descriptions).
+- **Must have** — `summary` sentence case, no trailing period.
+- **Should have** — `description`, parameter descriptions, all responses, concise response-object descriptions, realistic examples.
 
 ### Request/response examples
 
@@ -250,15 +277,16 @@ Do not use:
 
 ### API reference: gRPC
 
-- Generate from Protocol Buffers using `protoc-gen-doc`.
+- **Must have** — Generate from Protocol Buffers using `protoc-gen-doc`.
 - Follow the [Protocol Buffers Style Guide](https://protobuf.dev/programming-guides/style/).
-- File-level comment at top of each `.proto` file.
-- Comment every message, service, field, and enum.
-- Use Markdown syntax in proto comments.
+- **Should have** — file-level comment at top of each `.proto` file; group related messages/enums/services; leading comments for context, trailing for brief field notes.
+- Comment every message, service, field, and enum. Capitalize first letter; end with period.
+- Use Markdown syntax in proto comments. Formulas in comments: valid LaTeX (`$`/`$$`) — invalid = **Must fix**.
 - PascalCase for messages/enums/services, `lower_snake_case` for fields.
-- Enum zero value suffix: `UNSPECIFIED`.
+- Enum zero value suffix: `UNSPECIFIED`. Enum values end with semicolon.
 - Prefix enum values with enum name to avoid collisions.
 - Prefer top-level enums with prefixed values over nesting inside a message.
+- **Should have** — document message purpose, field constraints, enum usage, service workflow, and each RPC's request/response.
 - Use `@exclude` in comments to hide them from generated docs.
 
 Proto comment example:
@@ -296,8 +324,9 @@ service UserService {
 
 ### API reference: Other APIs
 
+- **Must have** — Clearly define the specific protocol and data formats.
 - Document all messages in Markdown.
-- Define message formats, field types, and whether fields are mandatory.
+- **Should have** — Field descriptions including type and whether each field is mandatory.
 
 ---
 
@@ -305,13 +334,16 @@ service UserService {
 
 ### Descriptive content
 
-Required sections:
+| Section | Priority |
+|---------|----------|
+| **Introduction** (`index.md`, H1 exactly `# Introduction`) | **Must have** |
+| **Changelog** (`changelog.md` or `changelog/changelog.md`) | **Must have** |
+| **Getting started** (dependencies, install, dev env, licensing) | **Should have** |
+| **User guide** | **Should have** |
+| **Usage examples** | **Should have** |
+| **Platform overview** (inside Introduction) | **Nice to have** |
 
-1. **Introduction** (`index.md`): high-level explanation, main features, target audience, language/OS support, library role (client/server/both). **Platform overview** material (architecture diagram, integration explanation) is **Nice to have** and usually lives inside Introduction; treat a missing Platform overview as Nice to fix at most, not Must fix or Should fix.
-2. **Getting started**: dependencies, system requirements, step-by-step installation, dev environment config, licensing.
-3. **User guide**: how to use the library/SDK.
-4. **Usage examples**: comprehensive code examples, common use cases.
-5. **Changelog** (`changelog.md`): latest version at top with release date. Categorize: Added, Changed, Deprecated, Removed, Fixed.
+Introduction body **Should have** — main features, target audience, language/OS support, library role (client/server/both). Treat a missing platform overview as Nice to fix at most.
 
 ### Reference documentation
 
@@ -352,12 +384,14 @@ Documentation-package/
 
 ## 8. File structure and naming
 
-- File names: lowercase with hyphens. Use `-` not `_` (URL compatibility).
+- **Must have** — One H1 per file (first heading after frontmatter), except REST `description/index.md` and `changelog/changelog.md` (H2-first, no H1).
+- File names: lowercase with hyphens. Use `-` not `_` (URL compatibility). Paths become public URLs—keep them short.
 - Subdirectory `index.md` files (e.g. `getting-started/index.md`) are **Nice to have**, not required. Do not flag missing subsection `index.md` as Must fix or Should fix.
 - **Image and asset folders** (Should have when figures are used):
   - **REST API**: place binary images and diagrams under **`description/images/`** or **`description/assets/`** only — not at package root.
   - **API (prose) / Library/SDK**: place binary images and diagrams under any `images/` or `assets/` directory in the package tree (not loose beside Markdown or `docfx.json`).
-  - Image extensions are lowercase. Informative images have descriptive alt text.
+  - Image extensions are lowercase. **Should have** — informative images have descriptive alt text; empty alt only for decorative images. **Nice to have** — optional title in quotes after URL.
+- When Markdown lacks a construct, inline HTML is permitted.
 - `toc.yml`: exactly one per package tree (no nested TOCs). Not required for **REST API-only** packages.
 - Code blocks: always specify language for syntax highlighting.
 - Encoding: UTF-8 (mandatory).
@@ -382,7 +416,7 @@ Documentation-package/
       href: user-guide/overview.md
 ```
 
-- `name`: display name. Wrap in double quotes if it contains `::` or `~`.
+- `name`: display name (optional—defaults to file title metadata or first H1). Wrap in double quotes if it contains `::`, `~`, `#`, or `{}`.
 - `href`: path to the file (optional for parent-only nodes).
 - `items`: child nodes.
 - No duplicate `href` values across the TOC.
@@ -400,7 +434,7 @@ Documentation-package/
 
 ### Compliance reports
 
-When asked for a compliance check, self-review, or pre-PR verification, write findings to **`documentation-compliance-report.md`** in the package root (next to `docfx.json`):
+When asked for a compliance check, self-review, or pre-PR verification, write findings to **`documentation-compliance-report.md`** in the package root (next to `docfx.json`) for local review only — **do not commit or push** that file to DevRelDocs:
 
 - Title, ISO date, package path relative to the repo root.
 - Summary line: Approved / Needs Minor Revisions / Needs Major Revisions (justified per severity rules below).
@@ -422,7 +456,8 @@ When asked for a compliance check, self-review, or pre-PR verification, write fi
 - All links functional.
 - Images display correctly (lowercase extensions); informative images have alt text (Should have).
 - Tested locally with Docfx.
-- Each Markdown file starts with an H1 as the first heading and contains exactly one H1, **except** REST API `description/index.md` and `changelog/changelog.md`, which must start with **H2** and contain **no H1**.
+- **Must have** — Each Markdown file starts with an H1 as the first heading and contains exactly one H1, **except** REST API `description/index.md` and `changelog/changelog.md`, which must start with **H2** and contain **no H1**.
+- **Must have** — When formulas are used, valid LaTeX per the Markdown rules; invalid delimiters = **Must fix**.
 
 ### Structure
 
@@ -454,7 +489,7 @@ When asked for a compliance check, self-review, or pre-PR verification, write fi
 
 - **Approved**: no open Must fix items.
 - **Needs minor revisions**: no Must fix; some Should fix or Nice to fix.
-- **Needs major revisions**: one or more Must fix items.
+- **Needs major revisions**: one or more Must fix, or widespread Should-fix issues the reviewer treats as release-blocking.
 
 ### Pre-submission checks
 
@@ -463,6 +498,9 @@ When asked for a compliance check, self-review, or pre-PR verification, write fi
 - Documentation tested on sandbox environment.
 - Peer review completed.
 - Documentation uploaded at least 10 days before release date.
+- **Must have** — Package hosted in DevRelDocs (public) or DevRelDocs_internal (internal).
+- **Must have** — Explicit sign-off for production migration after sandbox validation.
+- **Nice to have** — Issue category labels (Policy, Correctness, Quality) alongside severity in compliance reports.
 
 ### Post-migration verification
 
